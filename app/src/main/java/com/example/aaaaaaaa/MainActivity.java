@@ -80,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(view==btn1)
         {
             Intent intent=new Intent(this,WebViewActivity.class);
-            intent.putExtra("URL","https://asu2learn.asu.edu.eg/science/?redirect=0");
+            intent.putExtra("URL","https://science.asu.edu.eg/ar/events");
             startActivity(intent);
         }
         if(view==btn2)
@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }if(view==btn5)
         {
             Intent intent=new Intent(this,WebViewActivity.class);
-            intent.putExtra("URL","https://asu2learn.asu.edu.eg/science/?redirect=0");
+            intent.putExtra("URL","https://science.asu.edu.eg/ar/announcements");
             startActivity(intent);
         }
         if(view==btn6)

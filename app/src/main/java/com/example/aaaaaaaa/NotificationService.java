@@ -83,8 +83,12 @@ public class NotificationService extends Service {
     public void Load()
     {
         MyTask taskLoad = new MyTask();
-        taskLoad.execute("https://asu2learn.asu.edu.eg/science/?redirect=0");
+        taskLoad.execute("https://science.asu.edu.eg/ar/events");
+       /* taskLoad.execute("https://science.asu.edu.eg/ar/news");
+        taskLoad.execute("https://science.asu.edu.eg/ar/announcements");*/
+
     }
+
     private class MyTask extends AsyncTask<String, Void, String>
     {
         @Override
@@ -114,32 +118,27 @@ public class NotificationService extends Service {
                     newString.trimToSize();
                     oldString.trimToSize();
 
-                    System.out.println("oldddd"+oldString);
+                    System.out.println("oldddd" + oldString);
                     System.out.println("                        ");
-                    System.out.println("new  "+newString);
-                    int c=0;
-                    for(int i=0;i<Math.min(newString.length(),oldString.length());i++)
-                    {
+                    System.out.println("new  " + newString);
+                    int c = 0;
+                    for (int i = 0; i < Math.min(newString.length(), oldString.length()); i++) {
 
-                        if(newString.charAt(i)!=oldString.charAt(i))
-                        {
+                        if (newString.charAt(i) != oldString.charAt(i)) {
                             //System.out.println(i);
                             c++;
-                           // break;
+                            // break;
                         }
                     }
-                    System.out.println("cc  "+c);
-                    if(c>200&&newString.charAt(0)=='<'&&oldString.charAt(0)=='<')
-                    {
+                    System.out.println("cc  " + c);
+                    if (!(newString.toString().equals(oldString.toString())) && newString.charAt(0) == '<' && oldString.charAt(0) == '<') {
                         createNotification();
-                        oldString=new StringBuilder();
+                        oldString = new StringBuilder();
                         oldString.append(newString);
                     }
 
                     return newString.toString();
                 }
-
-
             }catch (Exception e)
             {
                 return e.getMessage();
