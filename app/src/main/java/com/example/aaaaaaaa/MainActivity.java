@@ -91,10 +91,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if(view==btn3)
         {
-            Intent intent=new Intent(this,WebViewActivity.class);
-            intent.putExtra("URL","https://asu2learn.asu.edu.eg/science/?redirect=0");
-            startActivity(intent);
+            startActivity(new Intent(this,GpaCalculator.class));
         }
+
         if(view==btn4)
         {
             Intent intent=new Intent(this,WebViewActivity.class);
@@ -108,7 +107,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if(view==btn6)
         {
-            startActivity(new Intent(this,GpaCalculator.class));
+            Intent intent=new Intent(this,WebViewActivity.class);
+            intent.putExtra("URL","https://asu2learn.asu.edu.eg/science/?redirect=0");
+            startActivity(intent);
         }
 
     }
