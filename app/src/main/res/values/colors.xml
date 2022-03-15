@@ -11,4 +11,6 @@
     <color name="primary_color">#d7f0ec</color>
     <color name="dark_primary_color">#a5bdba</color>
     <color name="light_primary_color">#ffcff1</color>
+
+    <color name="primary_text_color">#050505</color>
 </resources>

@@ -1,6 +1,7 @@
 package com.example.aaaaaaaa;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -16,17 +17,15 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private WebView webView;
-    private Button btn1;
-    private Button btn2;
-    private Button btn3;
-    private Button btn4;
-    private Button btn5;
-    private Button btn6;
-    private Button btn7;
-    private LinearLayout container;
+    private CardView btn1;
+    private CardView btn2;
+    private CardView btn3;
+    private CardView btn4;
+    private CardView btn5;
+    private CardView btn6;
 
     @Override
     protected void onStop () {
@@ -57,82 +56,60 @@ public class MainActivity extends AppCompatActivity {
         startService( new Intent( this, NotificationService. class )) ;
 
         variablesCreation();
-        btn1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Perform action on click
-                setVisibility();
-                webView.loadUrl(
-                        "https://material.io/resources/color/#!/?view.left=0&view.right=1&primary.color=9dffab&secondary.color=C8E6C9");
-            }
-        });
-        btn2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Perform action on click
-                setVisibility();
-                webView.loadUrl(
-                        "https://material.io/resources/color/#!/?view.left=0&view.right=1&primary.color=9dffab&secondary.color=C8E6C9");
-            }
-        });
-        btn3.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Perform action on click
-                setVisibility();
-                webView.loadUrl(
-                        "https://material.io/resources/color/#!/?view.left=0&view.right=1&primary.color=9dffab&secondary.color=C8E6C9");
-            }
-        });
-        btn4.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Perform action on click
-                setVisibility();
-                webView.loadUrl(
-                        "https://material.io/resources/color/#!/?view.left=0&view.right=1&primary.color=9dffab&secondary.color=C8E6C9");
-            }
-        });
-        btn5.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                // Perform action on click
-                setVisibility();
-
-                webView.loadUrl(
-                        "https://material.io/resources/color/#!/?view.left=0&view.right=1&primary.color=9dffab&secondary.color=C8E6C9");
-            }
-        });
-
-///////
-
-
-       /* Button loadBtn = (Button) this.findViewById(R.id.btn_load);
-        loadBtn.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                Load();
-            }
-        });*/
+        btn1.setOnClickListener(this);
+        btn2.setOnClickListener(this);
+        btn3.setOnClickListener(this);
+        btn4.setOnClickListener(this);
+        btn5.setOnClickListener(this);
+        btn6.setOnClickListener(this);
     }
-    private void setVisibility()
-    {
-        container.setVisibility(View.GONE);
-        webView.setVisibility(View.VISIBLE);
-    }
+
     private void variablesCreation() {
-            webView = (WebView) findViewById(R.id.webView1);
+        btn1=(CardView)findViewById(R.id.btn_1);
+        btn2=(CardView)findViewById(R.id.btn_2);
+        btn3=(CardView)findViewById(R.id.btn_3);
+        btn4=(CardView)findViewById(R.id.btn_4);
+        btn5=(CardView)findViewById(R.id.btn_5);
+        btn6=(CardView)findViewById(R.id.btn_6);
 
-        btn1=(Button)findViewById(R.id.btn_1);
-        btn2=(Button)findViewById(R.id.btn_2);
-        btn3=(Button)findViewById(R.id.btn_3);
-        btn4=(Button)findViewById(R.id.btn_4);
-        btn5=(Button)findViewById(R.id.btn_5);
-        btn6=(Button)findViewById(R.id.btn_6);
-        container=(LinearLayout)findViewById(R.id.calc_container);
-
-        container.setVisibility(View.GONE);
-        webView.getSettings().setJavaScriptEnabled(true);
     }
 
 
+    @Override
+    public void onClick(View view) {
+        if(view==btn1)
+        {
+            Intent intent=new Intent(this,WebViewActivity.class);
+            intent.putExtra("URL","https://asu2learn.asu.edu.eg/science/?redirect=0");
+            startActivity(intent);
+        }
+        if(view==btn2)
+        {
+            Intent intent=new Intent(this,WebViewActivity.class);
+            intent.putExtra("URL","https://asu2learn.asu.edu.eg/science/?redirect=0");
+            startActivity(intent);
+        }
+        if(view==btn3)
+        {
+            Intent intent=new Intent(this,WebViewActivity.class);
+            intent.putExtra("URL","https://asu2learn.asu.edu.eg/science/?redirect=0");
+            startActivity(intent);
+        }
+        if(view==btn4)
+        {
+            Intent intent=new Intent(this,WebViewActivity.class);
+            intent.putExtra("URL","https://asu2learn.asu.edu.eg/science/?redirect=0");
+            startActivity(intent);
+        }if(view==btn5)
+        {
+            Intent intent=new Intent(this,WebViewActivity.class);
+            intent.putExtra("URL","https://asu2learn.asu.edu.eg/science/?redirect=0");
+            startActivity(intent);
+        }
+        if(view==btn6)
+        {
+            startActivity(new Intent(this,GpaCalculator.class));
+        }
 
-
-
+    }
 }

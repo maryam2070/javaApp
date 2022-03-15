@@ -83,7 +83,7 @@ public class NotificationService extends Service {
     public void Load()
     {
         MyTask taskLoad = new MyTask();
-        taskLoad.execute("https://codeforces.com/submissions/SerialProgrammer");
+        taskLoad.execute("https://asu2learn.asu.edu.eg/science/?redirect=0");
     }
     private class MyTask extends AsyncTask<String, Void, String>
     {
