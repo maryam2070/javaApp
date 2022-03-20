@@ -24,8 +24,15 @@ import java.util.TimerTask;
 
 public class NotificationService extends Service {
 
-    public StringBuilder oldString ;
-    public StringBuilder newString ;
+    public StringBuilder oldString1 ;
+    public StringBuilder newString1 ;
+    public StringBuilder oldString2 ;
+    public StringBuilder newString2 ;
+    public StringBuilder oldString3 ;
+    public StringBuilder newString3 ;
+    public StringBuilder oldString4 ;
+    public StringBuilder newString4 ;
+    public int c=1;
     public static final String NOTIFICATION_CHANNEL_ID = "10001" ;
     private final static String default_notification_channel_id = "default" ;
     Timer timer ;
@@ -74,16 +81,34 @@ public class NotificationService extends Service {
 
                         Load();
 
-
                     }
                 }) ;
             }
         } ;
     }
-    public void Load()
-    {
-        MyTask taskLoad = new MyTask();
-        taskLoad.execute("https://science.asu.edu.eg/ar/events");
+
+    public void Load() {
+        MyTask taskLoad1 = new MyTask();
+        if(c==1)
+        {
+            taskLoad1.execute("https://science.asu.edu.eg/ar/events");
+        }
+        else if(c==2){
+            taskLoad1.execute("https://www.c-sharpcorner.com/blogs/everything-you-need-to-know-about-contextrelated-memory-leaks-in-android#:~:text=Context-related%20memory%20leaks%20in%20Android%20These%20Contexts%20are,to%20access%20the%20app%E2%80%99s%20resources%20and%20environment%20data.");
+        }else if(c==3){
+            taskLoad1.execute("https://www.c-sharpcorner.com/blogs/everything-you-need-to-know-about-contextrelated-memory-leaks-in-android#:~:text=Context-related%20memory%20leaks%20in%20Android%20These%20Contexts%20are,to%20access%20the%20app%E2%80%99s%20resources%20and%20environment%20data.");
+        }else if(c==4){
+            taskLoad1.execute("https://www.c-sharpcorner.com/blogs/everything-you-need-to-know-about-contextrelated-memory-leaks-in-android#:~:text=Context-related%20memory%20leaks%20in%20Android%20These%20Contexts%20are,to%20access%20the%20app%E2%80%99s%20resources%20and%20environment%20data.");
+        }
+    }
+    public void Load1() {
+
+        MyTask taskLoad2 = new MyTask();
+        taskLoad2.execute("https://www.c-sharpcorner.com/blogs/everything-you-need-to-know-about-contextrelated-memory-leaks-in-android#:~:text=Context-related%20memory%20leaks%20in%20Android%20These%20Contexts%20are,to%20access%20the%20app%E2%80%99s%20resources%20and%20environment%20data.");
+    }
+    public void Load2() {
+        MyTask taskLoad3 = new MyTask();
+        taskLoad3.execute("http://newportal.asu.edu.eg/science/ar/page/47/private-ads");
        /* taskLoad.execute("https://science.asu.edu.eg/ar/news");
         taskLoad.execute("https://science.asu.edu.eg/ar/announcements");*/
 
@@ -93,65 +118,243 @@ public class NotificationService extends Service {
     {
         @Override
         protected String doInBackground(String ... urls) {
-            try {
-                if (oldString == null) {
-                    URL url = new URL(urls[0]);
-                    URLConnection uc = url.openConnection();
-                    oldString = new StringBuilder();
-                    uc.setDoInput(true);
-                    BufferedReader in = new BufferedReader(new InputStreamReader(uc.getInputStream()));
-                    String inputLine;
-                    while ((inputLine = in.readLine()) != null)
-                        oldString.append(inputLine);
-                    in.close();
-                    return oldString.toString();
-                } else {
-                    URL url = new URL(urls[0]);
-                    URLConnection uc = url.openConnection();
-                    newString = new StringBuilder();
-                    uc.setDoInput(true);
-                    BufferedReader in = new BufferedReader(new InputStreamReader(uc.getInputStream()));
-                    String inputLine;
-                    while ((inputLine = in.readLine()) != null)
-                        newString.append(inputLine);
-                    in.close();
-                    newString.trimToSize();
-                    oldString.trimToSize();
-
-                    System.out.println("oldddd" + oldString);
-                    System.out.println("                        ");
-                    System.out.println("new  " + newString);
-                    int c = 0;
-                    for (int i = 0; i < Math.min(newString.length(), oldString.length()); i++) {
-
-                        if (newString.charAt(i) != oldString.charAt(i)) {
-                            //System.out.println(i);
-                            c++;
-                            // break;
-                        }
-                    }
-                    System.out.println("cc  " + c);
-                    if (!(newString.toString().equals(oldString.toString())) && newString.charAt(0) == '<' && oldString.charAt(0) == '<') {
-                        createNotification();
-                        oldString = new StringBuilder();
-                        oldString.append(newString);
-                    }
-
-                    return newString.toString();
-                }
-            }catch (Exception e)
+            if(c==1)
             {
-                return e.getMessage();
+                c++;
+                try {
+
+                    if (oldString1 == null) {
+                        URL url = new URL(urls[0]);
+                        URLConnection uc = url.openConnection();
+                        oldString1 = new StringBuilder();
+                        uc.setDoInput(true);
+                        BufferedReader in = new BufferedReader(new InputStreamReader(uc.getInputStream()));
+                        String inputLine;
+                        while ((inputLine = in.readLine()) != null)
+                            oldString1.append(inputLine);
+                        in.close();
+                        return oldString1.toString();
+                    }
+                    else {
+                        URL url = new URL(urls[0]);
+                        URLConnection uc = url.openConnection();
+                        newString1 = new StringBuilder();
+                        uc.setDoInput(true);
+                        BufferedReader in = new BufferedReader(new InputStreamReader(uc.getInputStream()));
+                        String inputLine;
+                        while ((inputLine = in.readLine()) != null)
+                            newString1.append(inputLine);
+                        in.close();
+                        newString1.trimToSize();
+                        oldString1.trimToSize();
+
+                        System.out.println("oldddd" + oldString1);
+                        System.out.println("                        ");
+                        System.out.println("new  " + newString1);
+                        int c = 0;
+                        for (int i = 0; i < Math.min(newString1.length(), oldString1.length()); i++) {
+
+                            if (newString1.charAt(i) != oldString1.charAt(i)) {
+                                // System.out.println(i);
+                                c++;
+                                //   break;
+                            }
+                        }
+                        System.out.println("11111111111111  " + c);
+                        if (!(newString1.toString().equals(oldString1.toString())) && newString1.charAt(0) == '<' && oldString1.charAt(0) == '<') {
+                            createNotification();
+                            oldString1 = new StringBuilder();
+                            oldString1.append(newString1);
+                        }
+
+                        return newString1.toString();
+                    }
+
+
+                }catch (Exception e)
+                {
+                    return e.getMessage();
+                }
+            }
+            else if(c==2)
+            {
+                c++;
+                try {
+
+                    if (oldString2 == null) {
+                        URL url = new URL(urls[0]);
+                        URLConnection uc = url.openConnection();
+                        oldString2 = new StringBuilder();
+                        uc.setDoInput(true);
+                        BufferedReader in = new BufferedReader(new InputStreamReader(uc.getInputStream()));
+                        String inputLine;
+                        while ((inputLine = in.readLine()) != null)
+                            oldString2.append(inputLine);
+                        in.close();
+                        return oldString2.toString();
+                    }
+                    else {
+                        URL url = new URL(urls[0]);
+                        URLConnection uc = url.openConnection();
+                        newString2 = new StringBuilder();
+                        uc.setDoInput(true);
+                        BufferedReader in = new BufferedReader(new InputStreamReader(uc.getInputStream()));
+                        String inputLine;
+                        while ((inputLine = in.readLine()) != null)
+                            newString2.append(inputLine);
+                        in.close();
+                        newString2.trimToSize();
+                        oldString2.trimToSize();
+
+                        System.out.println("oldddd" + oldString2);
+                        System.out.println("                        ");
+                        System.out.println("new  " + newString2);
+                        int c = 0;
+                        for (int i = 0; i < Math.min(newString2.length(), oldString2.length()); i++) {
+
+                            if (newString2.charAt(i) != oldString2.charAt(i)) {
+                                // System.out.println(i);
+                                c++;
+                                //   break;
+                            }
+                        }
+                        System.out.println("2222222222222222222 " + c);
+                        if (!(newString2.toString().equals(oldString2.toString())) && newString2.charAt(0) == '<' && oldString2.charAt(0) == '<') {
+                            createNotification();
+                            oldString2 = new StringBuilder();
+                            oldString2.append(newString2);
+                        }
+
+                        return newString2.toString();
+                    }
+
+
+                }catch (Exception e)
+                {
+                    return e.getMessage();
+                }
+            }
+            else if(c==3)
+            {
+                c++;
+                try {
+
+                    if (oldString3 == null) {
+                        URL url = new URL(urls[0]);
+                        URLConnection uc = url.openConnection();
+                        oldString3 = new StringBuilder();
+                        uc.setDoInput(true);
+                        BufferedReader in = new BufferedReader(new InputStreamReader(uc.getInputStream()));
+                        String inputLine;
+                        while ((inputLine = in.readLine()) != null)
+                            oldString3.append(inputLine);
+                        in.close();
+                        return oldString3.toString();
+                    }
+                    else {
+                        URL url = new URL(urls[0]);
+                        URLConnection uc = url.openConnection();
+                        newString3 = new StringBuilder();
+                        uc.setDoInput(true);
+                        BufferedReader in = new BufferedReader(new InputStreamReader(uc.getInputStream()));
+                        String inputLine;
+                        while ((inputLine = in.readLine()) != null)
+                            newString3.append(inputLine);
+                        in.close();
+                        newString3.trimToSize();
+                        oldString3.trimToSize();
+
+                        System.out.println("oldddd" + oldString3);
+                        System.out.println("                        ");
+                        System.out.println("new  " + newString3);
+                        int c = 0;
+                        for (int i = 0; i < Math.min(newString3.length(), oldString3.length()); i++) {
+
+                            if (newString3.charAt(i) != oldString3.charAt(i)) {
+                                // System.out.println(i);
+                                c++;
+                                //   break;
+                            }
+                        }
+                        System.out.println("3333333333333" + c);
+                        if (!(newString3.toString().equals(oldString3.toString())) && newString3.charAt(0) == '<' && oldString3.charAt(0) == '<') {
+                            createNotification();
+                            oldString3 = new StringBuilder();
+                            oldString3.append(newString3);
+                        }
+
+                        return newString3.toString();
+                    }
+
+
+                }catch (Exception e)
+                {
+                    return e.getMessage();
+                }
+            }
+
+            else
+            {
+                c=1;
+                try {
+
+                    if (oldString4 == null) {
+                        URL url = new URL(urls[0]);
+                        URLConnection uc = url.openConnection();
+                        oldString4 = new StringBuilder();
+                        uc.setDoInput(true);
+                        BufferedReader in = new BufferedReader(new InputStreamReader(uc.getInputStream()));
+                        String inputLine;
+                        while ((inputLine = in.readLine()) != null)
+                            oldString4.append(inputLine);
+                        in.close();
+                        return oldString4.toString();
+                    }
+                    else {
+                        URL url = new URL(urls[0]);
+                        URLConnection uc = url.openConnection();
+                        newString4 = new StringBuilder();
+                        uc.setDoInput(true);
+                        BufferedReader in = new BufferedReader(new InputStreamReader(uc.getInputStream()));
+                        String inputLine;
+                        while ((inputLine = in.readLine()) != null)
+                            newString4.append(inputLine);
+                        in.close();
+                        newString4.trimToSize();
+                        oldString4.trimToSize();
+
+                        System.out.println("oldddd" + oldString4);
+                        System.out.println("                        ");
+                        System.out.println("new  " + newString4);
+                        int c = 0;
+                        for (int i = 0; i < Math.min(newString4.length(), oldString4.length()); i++) {
+
+                            if (newString4.charAt(i) != oldString4.charAt(i)) {
+                                // System.out.println(i);
+                                c++;
+                                //   break;
+                            }
+                        }
+                        System.out.println("444444444444" + c);
+                        if (!(newString4.toString().equals(oldString4.toString())) && newString4.charAt(0) == '<' && oldString4.charAt(0) == '<') {
+                            createNotification();
+                            oldString4 = new StringBuilder();
+                            oldString4.append(newString4);
+                        }
+
+                        return newString4.toString();
+                    }
+
+
+                }catch (Exception e)
+                {
+                    return e.getMessage();
+                }
             }
         }
 
 
-        @Override
-        protected void onPostExecute(String result)
-        {
-            System.out.println("aaaaaa"+result);
-           // Toast.makeText(getApplication(), result, Toast.LENGTH_LONG).show();
-        }
+
     }
     private void createNotification () {
      //   System.out.println("notfffffffffffffffffff");

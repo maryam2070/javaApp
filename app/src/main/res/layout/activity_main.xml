@@ -10,32 +10,39 @@
 
 
 
-    <LinearLayout
+    <GridLayout
         android:layout_width="match_parent"
         android:layout_height="120dp"
         android:background="@color/dark_primary_color"
+        android:rowCount="1"
+        android:columnCount="3"
         >
         <ImageView
-            android:layout_width="80dp"
-            android:layout_height="100dp"
-            android:layout_gravity="start"
+            android:layout_width="70dp"
+            android:layout_height="90dp"
+            android:layout_gravity="start|center"
+            android:layout_marginStart="10dp"
             android:src="@drawable/logo"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:text="welcome to ainshams gate way"
+            android:layout_marginTop="40dp"
+            android:gravity="center"
+            android:text="welcome to faculty of science ASU"
             android:textColor="@color/black"
             android:textSize="16sp"
+            android:layout_gravity=""
             android:textStyle="bold" />
 
         <ImageView
-            android:layout_width="80dp"
-            android:layout_height="100dp"
-            android:gravity="end"
+            android:layout_width="70dp"
+            android:layout_height="90dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_gravity="end|center"
             android:src="@drawable/logo2"/>
-    </LinearLayout>
+    </GridLayout>
 
     <ScrollView
         android:layout_width="match_parent"
