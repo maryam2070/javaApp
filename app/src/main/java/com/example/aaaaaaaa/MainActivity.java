@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private CardView btn4;
     private CardView btn5;
     private CardView btn6;
+    private ImageButton notificationBtn;
 
     @Override
     protected void onStop () {
@@ -62,9 +64,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn4.setOnClickListener(this);
         btn5.setOnClickListener(this);
         btn6.setOnClickListener(this);
+        notificationBtn.setOnClickListener(this);
     }
 
     private void variablesCreation() {
+        notificationBtn=(ImageButton)findViewById(R.id.notification_btn);
         btn1=(CardView)findViewById(R.id.btn_1);
         btn2=(CardView)findViewById(R.id.btn_2);
         btn3=(CardView)findViewById(R.id.btn_3);
@@ -77,6 +81,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
+        if(view==notificationBtn)
+        {
+            Intent intent=new Intent(this,NotificationActivity.class);
+            startActivity(intent);
+        }
         if(view==btn1)
         {
             Intent intent=new Intent(this,WebViewActivity.class);

@@ -2,6 +2,7 @@ package com.example.aaaaaaaa;
 
 import static java.sql.DriverManager.println;
 
+import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
@@ -13,6 +14,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
+import androidx.lifecycle.ViewModelProvider;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -24,6 +26,7 @@ import java.util.TimerTask;
 
 public class NotificationService extends Service {
 
+    private NotficationViewModel mNotificationViewModel;
     public StringBuilder oldString1 ;
     public StringBuilder newString1 ;
     public StringBuilder oldString2 ;
@@ -358,10 +361,16 @@ public class NotificationService extends Service {
     }
     private void createNotification () {
      //   System.out.println("notfffffffffffffffffff");
+        Notfication notfication=new Notfication() ;
+        notfication.setId(1);
+        notfication.setTitle("aaaaaaaa");
+        notfication.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+
+
         NotificationManager mNotificationManager = (NotificationManager) getSystemService( NOTIFICATION_SERVICE ) ;
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext() , default_notification_channel_id ) ;
-        mBuilder.setContentTitle( "ثبح ثباحو ثباحو ثبح" ) ;
-        mBuilder.setContentText( "ايوة يا عمرووو ياحلاااااااااااااق ظبطلي الابلكيشن علشان مش مركز في اي حاجة" ) ;
+        mBuilder.setContentTitle( "ءءءءءءءءءءءء" ) ;
+        mBuilder.setContentText( "ءءءءءءءءءءءءءء" ) ;
         mBuilder.setTicker( "ءءءءءءءءءءء" ) ;
         mBuilder.setSmallIcon(R.drawable. ic_launcher_foreground ) ;
         mBuilder.setAutoCancel( true ) ;
