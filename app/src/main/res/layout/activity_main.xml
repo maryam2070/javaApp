@@ -55,16 +55,50 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
-
-            <ImageButton
-                android:id="@+id/notification_btn"
-                android:layout_width="wrap_content"
+            <GridLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_notifications_24"
-                android:layout_gravity="end"
-                android:layout_marginEnd="10dp"
-                android:backgroundTint="@color/white"
-                app:tint="@color/primary_color" />
+                android:orientation="vertical"
+                android:rowCount="1"
+                android:columnCount="2">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/black"
+                        android:textSize="18sp"
+                        android:layout_marginStart="20dp"
+                        android:text="hope you have anice day"
+                        android:layout_gravity="center|start"/>
+
+                    <TextView
+                        android:id="@+id/cue_time_tv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/gray"
+                        android:textSize="15sp"
+                        android:layout_marginStart="20dp"
+                        android:text="hope you have anice day"
+                        android:layout_gravity="center|start"/>
+
+                </LinearLayout>
+
+
+                <ImageButton
+                    android:id="@+id/notification_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_baseline_notifications_24"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="10dp"
+                    android:backgroundTint="@color/white"
+                    app:tint="@color/primary_color" />
+            </GridLayout>
+
             <androidx.cardview.widget.CardView
                 android:id="@+id/btn_1"
                 android:layout_width="match_parent"
@@ -126,14 +160,14 @@
                         android:layout_height="140dp"
                         android:layout_gravity="center"
                         android:foregroundGravity="center"
-                        android:src="@drawable/img1" />
+                        android:src="@drawable/notes" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="12dp"
                         android:layout_centerInParent="true"
-                        android:text="Faculty Events"
+                        android:text="Student Notes"
                         android:layout_gravity="center"
                         android:textColor="@color/primary_text_color"
                         android:textSize="16sp"
@@ -200,14 +234,14 @@
                         android:layout_height="140dp"
                         android:layout_gravity="center"
                         android:foregroundGravity="center"
-                        android:src="@drawable/img1" />
+                        android:src="@drawable/news" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginBottom="12dp"
                         android:layout_centerInParent="true"
-                        android:text="Faculty Events"
+                        android:text="Faculty News"
                         android:layout_gravity="center"
                         android:textColor="@color/primary_text_color"
                         android:textSize="16sp"

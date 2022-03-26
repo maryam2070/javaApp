@@ -1,6 +1,7 @@
 package com.example.aaaaaaaa;
 
 import android.content.Context;
+import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
@@ -12,52 +13,42 @@ import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Notfication.class},version = 1, exportSchema = false)
+@Database(entities = {Notfication.class},version = 1)
 public abstract class NotificationDatabase extends RoomDatabase {
     public abstract NotficationDao notficationDao();
+    private static NotificationDatabase instance;
 
-    private static volatile NotificationDatabase INSTANCE;
-    private static final int NUMBER_OF_THREADS = 4;
-    static final ExecutorService databaseWriteExecutor =
-            Executors.newFixedThreadPool(NUMBER_OF_THREADS);
-
-    static NotificationDatabase getDatabase(final Context context) {
-        if (INSTANCE == null) {
-            synchronized (NotificationDatabase.class) {
-                if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
-                            NotificationDatabase.class, "word_database")
-                            .build();
-                }
-            }
+    public static synchronized NotificationDatabase getInstance(Context context)
+    {
+        if(instance==null)
+        {
+            instance=Room.databaseBuilder(context.getApplicationContext(),
+                    NotificationDatabase.class,"notificaion_db")
+                    .fallbackToDestructiveMigration()
+                    .addCallback(roomCallback)
+                    .build();
         }
-        return INSTANCE;
+        return instance;
     }
-
-    private static RoomDatabase.Callback sRoomDatabaseCallback = new RoomDatabase.Callback() {
+    private static RoomDatabase.Callback roomCallback=new RoomDatabase.Callback() {
         @Override
         public void onCreate(@NonNull SupportSQLiteDatabase db) {
             super.onCreate(db);
-
-            // If you want to keep data through app restarts,
-            // comment out the following block
-            databaseWriteExecutor.execute(() -> {
-                // Populate the database in the background.
-                // If you want to start with more words, just add them.
-                NotficationDao dao = INSTANCE.notficationDao();
-                dao.deleteAll();
-
-                Notfication notfication = new Notfication();
-                notfication.setId(1);
-                notfication.setText("aaaaaa");
-                notfication.setTitle("aaaaaaaaa");
-                dao.insertNotfictaion(notfication);
-                notfication = new Notfication();
-                notfication.setId(2);
-                notfication.setText("aaaaaa");
-                notfication.setTitle("aaaaaaaaa");
-                dao.insertNotfictaion(notfication);
-            });
+            new PopulateDbAsynckTask(instance).execute();
         }
     };
+    private static class PopulateDbAsynckTask extends AsyncTask<Void,Void,Void> {
+        private NotficationDao dao;
+
+        public PopulateDbAsynckTask(NotificationDatabase db) {
+            dao= db.notficationDao();
+        }
+
+        @Override
+        protected Void doInBackground(Void... voids) {
+            dao.insertNotfictaion(new Notfication(UUID.randomUUID(),"title","text","12:12"));
+            return null;
+        }
+    }
+
 }

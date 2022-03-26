@@ -1,32 +1,33 @@
 package com.example.aaaaaaaa;
 
-import static java.sql.DriverManager.println;
-
 import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
-import android.widget.Toast;
 
+import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
-import androidx.lifecycle.ViewModelProvider;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.sql.Time;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.UUID;
 
 
 public class NotificationService extends Service {
 
-    private NotficationViewModel mNotificationViewModel;
     public StringBuilder oldString1 ;
     public StringBuilder newString1 ;
     public StringBuilder oldString2 ;
@@ -94,28 +95,21 @@ public class NotificationService extends Service {
         MyTask taskLoad1 = new MyTask();
         if(c==1)
         {
-            taskLoad1.execute("https://science.asu.edu.eg/ar/events");
+            //////////events
+            taskLoad1.execute("https://sciasuedu-my.sharepoint.com/personal/hmbahig_sci_asu_edu_eg/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fhmbahig%5Fsci%5Fasu%5Fedu%5Feg%2FDocuments%2FCrypto%2D%20COMP%20308%20%2D%20Summer");
         }
         else if(c==2){
-            taskLoad1.execute("https://www.c-sharpcorner.com/blogs/everything-you-need-to-know-about-contextrelated-memory-leaks-in-android#:~:text=Context-related%20memory%20leaks%20in%20Android%20These%20Contexts%20are,to%20access%20the%20app%E2%80%99s%20resources%20and%20environment%20data.");
+            //////////notes
+            taskLoad1.execute("https://sciasuedu-my.sharepoint.com/personal/hmbahig_sci_asu_edu_eg/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fhmbahig%5Fsci%5Fasu%5Fedu%5Feg%2FDocuments%2FCrypto%2D%20COMP%20308%20%2D%20Summer");
         }else if(c==3){
-            taskLoad1.execute("https://www.c-sharpcorner.com/blogs/everything-you-need-to-know-about-contextrelated-memory-leaks-in-android#:~:text=Context-related%20memory%20leaks%20in%20Android%20These%20Contexts%20are,to%20access%20the%20app%E2%80%99s%20resources%20and%20environment%20data.");
+            //////////annou
+            taskLoad1.execute("https://sciasuedu-my.sharepoint.com/personal/hmbahig_sci_asu_edu_eg/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fhmbahig%5Fsci%5Fasu%5Fedu%5Feg%2FDocuments%2FCrypto%2D%20COMP%20308%20%2D%20Summer");
         }else if(c==4){
+            /////////news
             taskLoad1.execute("https://www.c-sharpcorner.com/blogs/everything-you-need-to-know-about-contextrelated-memory-leaks-in-android#:~:text=Context-related%20memory%20leaks%20in%20Android%20These%20Contexts%20are,to%20access%20the%20app%E2%80%99s%20resources%20and%20environment%20data.");
         }
     }
-    public void Load1() {
 
-        MyTask taskLoad2 = new MyTask();
-        taskLoad2.execute("https://www.c-sharpcorner.com/blogs/everything-you-need-to-know-about-contextrelated-memory-leaks-in-android#:~:text=Context-related%20memory%20leaks%20in%20Android%20These%20Contexts%20are,to%20access%20the%20app%E2%80%99s%20resources%20and%20environment%20data.");
-    }
-    public void Load2() {
-        MyTask taskLoad3 = new MyTask();
-        taskLoad3.execute("http://newportal.asu.edu.eg/science/ar/page/47/private-ads");
-       /* taskLoad.execute("https://science.asu.edu.eg/ar/news");
-        taskLoad.execute("https://science.asu.edu.eg/ar/announcements");*/
-
-    }
 
     private class MyTask extends AsyncTask<String, Void, String>
     {
@@ -165,7 +159,7 @@ public class NotificationService extends Service {
                         }
                         System.out.println("11111111111111  " + c);
                         if (!(newString1.toString().equals(oldString1.toString())) && newString1.charAt(0) == '<' && oldString1.charAt(0) == '<') {
-                            createNotification();
+                            createNotification("Faculty of science","We have new event");
                             oldString1 = new StringBuilder();
                             oldString1.append(newString1);
                         }
@@ -223,7 +217,7 @@ public class NotificationService extends Service {
                         }
                         System.out.println("2222222222222222222 " + c);
                         if (!(newString2.toString().equals(oldString2.toString())) && newString2.charAt(0) == '<' && oldString2.charAt(0) == '<') {
-                            createNotification();
+                            createNotification("Faculty of science","We have new note");
                             oldString2 = new StringBuilder();
                             oldString2.append(newString2);
                         }
@@ -281,7 +275,7 @@ public class NotificationService extends Service {
                         }
                         System.out.println("3333333333333" + c);
                         if (!(newString3.toString().equals(oldString3.toString())) && newString3.charAt(0) == '<' && oldString3.charAt(0) == '<') {
-                            createNotification();
+                            createNotification("Faculty of science","We have new announcement");
                             oldString3 = new StringBuilder();
                             oldString3.append(newString3);
                         }
@@ -340,14 +334,12 @@ public class NotificationService extends Service {
                         }
                         System.out.println("444444444444" + c);
                         if (!(newString4.toString().equals(oldString4.toString())) && newString4.charAt(0) == '<' && oldString4.charAt(0) == '<') {
-                            createNotification();
+                            createNotification("Faculty of science","We have new news");
                             oldString4 = new StringBuilder();
                             oldString4.append(newString4);
                         }
-
                         return newString4.toString();
                     }
-
 
                 }catch (Exception e)
                 {
@@ -359,20 +351,24 @@ public class NotificationService extends Service {
 
 
     }
-    private void createNotification () {
-     //   System.out.println("notfffffffffffffffffff");
-        Notfication notfication=new Notfication() ;
-        notfication.setId(1);
-        notfication.setTitle("aaaaaaaa");
-        notfication.setText("aaaaaaaaaaaaaaaaaaaaaaaaaaaa");
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void createNotification (String title, String text) {
 
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+
+        Notfication notfication=new Notfication(UUID.randomUUID(),title,text,dtf.format(now));
+        NotificationRepo repo=new NotificationRepo(getApplication());
+        repo.insert(notfication);
+        System.out.println("notfffffffffffffffffff");
 
         NotificationManager mNotificationManager = (NotificationManager) getSystemService( NOTIFICATION_SERVICE ) ;
         NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext() , default_notification_channel_id ) ;
-        mBuilder.setContentTitle( "ءءءءءءءءءءءء" ) ;
-        mBuilder.setContentText( "ءءءءءءءءءءءءءء" ) ;
-        mBuilder.setTicker( "ءءءءءءءءءءء" ) ;
-        mBuilder.setSmallIcon(R.drawable. ic_launcher_foreground ) ;
+        mBuilder.setContentTitle( title) ;
+        mBuilder.setContentText( text ) ;
+        mBuilder.setTicker( "Faculty of science ASU" ) ;
+        mBuilder.setSmallIcon(R.drawable.logo2) ;
         mBuilder.setAutoCancel( true ) ;
         if (android.os.Build.VERSION. SDK_INT >= android.os.Build.VERSION_CODES. O ) {
             int importance = NotificationManager. IMPORTANCE_HIGH ;
@@ -383,5 +379,10 @@ public class NotificationService extends Service {
         }
         assert mNotificationManager != null;
         mNotificationManager.notify(( int ) System. currentTimeMillis () , mBuilder.build()) ;
+
+
+
     }
+
+
 }

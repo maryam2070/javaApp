@@ -1,5 +1,7 @@
 package com.example.aaaaaaaa;
 
+import android.app.Application;
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,56 +12,61 @@ import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class NotificationAdapter extends ListAdapter<Notfication, NotificationViewHolder> {
+import java.lang.reflect.Array;
+import java.util.Collections;
+import java.util.List;
 
-    public NotificationAdapter(@NonNull DiffUtil.ItemCallback<Notfication> diffCallback) {
-        super(diffCallback);
+public class NotificationAdapter extends RecyclerView.Adapter<NotificationViewHolder> {
+
+    List<Notfication> notifications=Collections.emptyList();
+
+
+    public void setNotifications(List<Notfication> notifications) {
+        this.notifications = notifications;
+        notifyDataSetChanged();
+    }
+
+    Context context;
+    public NotificationAdapter( Application application)
+    {
+        this.context = application;
+    }
+
+
+    @NonNull
+    @Override
+    public NotificationViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v=LayoutInflater.from(parent.getContext()).inflate(R.layout.notification_item,parent,false);
+        NotificationViewHolder vh= new NotificationViewHolder(v);
+        return vh;
     }
 
     @Override
-    public NotificationViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        return NotificationViewHolder.create(parent);
+    public void onBindViewHolder(@NonNull NotificationViewHolder holder, int position) {
+
+        holder.notificationText.setText(notifications.get(position).getText());
+        holder.notificationTime.setText(notifications.get(position).getTime());
     }
 
     @Override
-    public void onBindViewHolder(NotificationViewHolder holder, int position) {
-        Notfication current = getItem(position);
-        holder.bind(current.getText());
+    public int getItemCount() {
+        return notifications.size();
     }
 
-
-    static class NotifictaionDiff extends DiffUtil.ItemCallback<Notfication> {
-
-        @Override
-        public boolean areItemsTheSame(@NonNull Notfication oldItem, @NonNull Notfication newItem) {
-            return oldItem == newItem;
-        }
-
-        @Override
-        public boolean areContentsTheSame(@NonNull Notfication oldItem, @NonNull Notfication newItem) {
-            return oldItem.getText().equals(newItem.getText());
-        }
-    }
 
 
 }
-class NotificationViewHolder extends RecyclerView.ViewHolder {
-    private final TextView notificationContent;
+    class NotificationViewHolder extends RecyclerView.ViewHolder {
+        public final TextView notificationText;
+        public final TextView notificationTime;
 
-    private NotificationViewHolder(View itemView) {
-        super(itemView);
-        notificationContent = itemView.findViewById(R.id.notification_content_tv);
-    }
+        public NotificationViewHolder(View itemView) {
+            super(itemView);
+            notificationText = itemView.findViewById(R.id.notification_content_tv);
+            notificationTime=itemView.findViewById(R.id.time_tv);
+        }
 
-    public void bind(String text) {
-        notificationContent.setText(text);
-    }
-
-    static NotificationViewHolder create(ViewGroup parent) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.notification_item, parent, false);
-        return new NotificationViewHolder(view);
-    }
 }
+
 
 

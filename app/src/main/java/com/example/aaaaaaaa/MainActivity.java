@@ -1,22 +1,28 @@
 package com.example.aaaaaaaa;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -27,6 +33,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private CardView btn4;
     private CardView btn5;
     private CardView btn6;
+    private TextView curTime;
     private ImageButton notificationBtn;
 
     @Override
@@ -50,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void closeApp (View view) {
         finish() ;
     }
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,6 +66,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         startService( new Intent( this, NotificationService. class )) ;
 
         variablesCreation();
+
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+        curTime.setText(dtf.format(now));
+
         btn1.setOnClickListener(this);
         btn2.setOnClickListener(this);
         btn3.setOnClickListener(this);
@@ -75,6 +88,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn4=(CardView)findViewById(R.id.btn_4);
         btn5=(CardView)findViewById(R.id.btn_5);
         btn6=(CardView)findViewById(R.id.btn_6);
+        curTime=(TextView)findViewById(R.id.cue_time_tv);
 
     }
 
@@ -88,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if(view==btn1)
         {
+            //notes
             Intent intent=new Intent(this,WebViewActivity.class);
             intent.putExtra("URL","https://science.asu.edu.eg/ar/events");
             startActivity(intent);
@@ -106,7 +121,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(view==btn4)
         {
             Intent intent=new Intent(this,WebViewActivity.class);
-            intent.putExtra("URL","https://asu2learn.asu.edu.eg/science/?redirect=0");
+            intent.putExtra("URL","https://science.asu.edu.eg/ar/news");
             startActivity(intent);
         }if(view==btn5)
         {
@@ -116,6 +131,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if(view==btn6)
         {
+            //facebook
             Intent intent=new Intent(this,WebViewActivity.class);
             intent.putExtra("URL","https://asu2learn.asu.edu.eg/science/?redirect=0");
             startActivity(intent);

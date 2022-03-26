@@ -11,23 +11,40 @@ import java.util.UUID;
 
 @Entity(tableName = "Notfication")
 public class Notfication implements Serializable {
-    public int getId() {
+
+    public UUID getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(UUID id) {
         this.id = id;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public Notfication(@NotNull UUID id, String title, String text, String time) {
+        this.id = id;
+        this.title = title;
+        this.text = text;
+        this.time = time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 
     @NotNull
     @PrimaryKey
-    public int id;
+    public UUID id;
     @ColumnInfo(name="Title")
     public String title;
     @ColumnInfo(name="Text")
     public String text;
 
-
+    @ColumnInfo(name="Time")
+    public String time;
 
     public String getTitle() {
         return title;
