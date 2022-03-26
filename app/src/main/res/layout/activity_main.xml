@@ -72,7 +72,7 @@
                         android:textColor="@color/black"
                         android:textSize="18sp"
                         android:layout_marginStart="20dp"
-                        android:text="hope you have anice day"
+                        android:text="Hope you have a nice day"
                         android:layout_gravity="center|start"/>
 
                     <TextView
