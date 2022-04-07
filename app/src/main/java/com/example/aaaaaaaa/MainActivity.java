@@ -1,10 +1,12 @@
 package com.example.aaaaaaaa;
 
+import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,6 +24,8 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
@@ -33,8 +37,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private CardView btn4;
     private CardView btn5;
     private CardView btn6;
+    private CardView btn7;
     private TextView curTime;
     private ImageButton notificationBtn;
+
+
 
     @Override
     protected void onStop () {
@@ -77,6 +84,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn4.setOnClickListener(this);
         btn5.setOnClickListener(this);
         btn6.setOnClickListener(this);
+        btn7.setOnClickListener(this);
         notificationBtn.setOnClickListener(this);
     }
 
@@ -88,6 +96,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btn4=(CardView)findViewById(R.id.btn_4);
         btn5=(CardView)findViewById(R.id.btn_5);
         btn6=(CardView)findViewById(R.id.btn_6);
+        btn7=(CardView)findViewById(R.id.btn_7);
         curTime=(TextView)findViewById(R.id.cue_time_tv);
 
     }
@@ -130,6 +139,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             startActivity(intent);
         }
         if(view==btn6)
+        {
+            //facebook
+            Intent intent=new Intent(this,WebViewActivity.class);
+            intent.putExtra("URL","https://asu2learn.asu.edu.eg/science/?redirect=0");
+            startActivity(intent);
+        }
+        if(view==btn7)
         {
             //facebook
             Intent intent=new Intent(this,WebViewActivity.class);

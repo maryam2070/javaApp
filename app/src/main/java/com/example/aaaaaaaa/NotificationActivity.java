@@ -18,6 +18,7 @@ import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import java.util.Collections;
 import java.util.List;
 
 public class NotificationActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
@@ -75,6 +76,7 @@ public class NotificationActivity extends AppCompatActivity implements SwipeRefr
                     @Override
                     public void onChanged(List<Notfication> notfications) {
                         adapter.setNotifications(notfications);
+                        recyclerView.setAdapter(adapter);
                     }
                 });
             }
@@ -93,7 +95,9 @@ public class NotificationActivity extends AppCompatActivity implements SwipeRefr
             @Override
             public void onClick(View view) {
                 viewModel.deleteAll();
+                adapter.setNotifications(Collections.emptyList());
                 adapter.notifyDataSetChanged();
+                recyclerView.setAdapter(adapter);
                 dialog.dismiss();
             }
         });
