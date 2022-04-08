@@ -35,10 +35,11 @@ public class WebViewActivity extends AppCompatActivity implements SwipeRefreshLa
                 webView.clearHistory();
                 if(getIntent().hasExtra("URL"))
                 {
+                    webView.clearFormData();
                     webView.loadUrl(getIntent().getStringExtra("URL"));
                 }
             }
-        }, 2000);
+        }, 500);
 
     }
 }
