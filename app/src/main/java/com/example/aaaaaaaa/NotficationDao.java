@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
+import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
 import java.util.List;
 
@@ -13,7 +14,7 @@ public interface NotficationDao {
     @Query("Select * FROM Notfication")
     LiveData<List<Notfication>> getAll();
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insertNotfictaion(Notfication notfication);
 
     @Query("DELETE FROM Notfication")

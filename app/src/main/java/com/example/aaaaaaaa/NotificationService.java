@@ -137,8 +137,9 @@ public class NotificationService extends Service {
                     System.out.println("ccccccccccc1111111 "+s);
                     System.out.println("ccccccccccc111111111 "+olds);
 
-                    if (!(s.toString().equals(olds.toString())) && s.charAt(0) == '<' && olds.charAt(0) == '<') {
-                        createNotification("Faculty of science", "We have new event");
+                    if (!(s.toString().equals(olds.toString()))  ) {
+                        if(s.charAt(0) == '<' && olds.charAt(0) == '<')
+                            createNotification("Faculty of science", "We have new event");
                         myEdit.putString("s1", s.toString());
                         myEdit.commit();
                     }
@@ -192,8 +193,9 @@ public class NotificationService extends Service {
                     System.out.println("ccccccccccc1111111 "+s);
                     System.out.println("ccccccccccc111111111 "+olds);
 
-                    if (!(s.toString().equals(olds.toString())) && s.charAt(0) == '<' && olds.charAt(0) == '<') {
-                        createNotification("Faculty of science","We have new note");
+                    if (!(s.toString().equals(olds.toString()))  ) {
+                        if(s.charAt(0) == '<' && olds.charAt(0) == '<')
+                              createNotification("Faculty of science","We have new note");
                         myEdit.putString("s1", s.toString());
                         myEdit.commit();
                     }
@@ -246,8 +248,9 @@ public class NotificationService extends Service {
                     System.out.println("ccccccccccc1111111 "+s);
                     System.out.println("ccccccccccc111111111 "+olds);
 
-                    if (!(s.toString().equals(olds.toString())) && s.charAt(0) == '<' && olds.charAt(0) == '<') {
-                        createNotification("Faculty of science","We have new News");
+                    if (!(s.toString().equals(olds.toString()))  ) {
+                        if(s.charAt(0) == '<' && olds.charAt(0) == '<')
+                             createNotification("Faculty of science","We have new News");
                         myEdit.putString("s1", s.toString());
                         myEdit.commit();
                     }
@@ -303,8 +306,9 @@ public class NotificationService extends Service {
                     System.out.println("ccccccccccc1111111 " + s);
                     System.out.println("ccccccccccc111111111 " + olds);
 
-                    if (!(s.toString().equals(olds.toString())) && s.charAt(0) == '<' && olds.charAt(0) == '<') {
-                        createNotification("Faculty of science", "We have new announcement");
+                    if (!(s.toString().equals(olds.toString())) ) {
+                        if( s.charAt(0) == '<' && olds.charAt(0) == '<')
+                            createNotification("Faculty of science", "We have new announcement");
                         myEdit.putString("s1", s.toString());
                         myEdit.commit();
                     }
@@ -345,9 +349,7 @@ public class NotificationService extends Service {
             assert mNotificationManager != null;
             mNotificationManager.notify((int) System.currentTimeMillis(), mBuilder.build());
 
-
         }
-
 
     }
 

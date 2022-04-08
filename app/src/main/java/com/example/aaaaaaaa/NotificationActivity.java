@@ -1,5 +1,7 @@
 package com.example.aaaaaaaa;
 
+import static android.widget.Toast.LENGTH_SHORT;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
@@ -17,17 +19,17 @@ import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.List;
 
-public class NotificationActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
+public class NotificationActivity extends AppCompatActivity {
     private NotificationViewModel viewModel;
     RecyclerView recyclerView;
     NotificationAdapter adapter;
     ImageView delete;
     ImageView back;
-    private SwipeRefreshLayout mSwipeRefreshLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +37,6 @@ public class NotificationActivity extends AppCompatActivity implements SwipeRefr
 
         delete=(ImageView)findViewById(R.id.delete_iv);
         back=(ImageView)findViewById(R.id.back_iv);
-        mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
-        mSwipeRefreshLayout.setOnRefreshListener(this);
 
         adapter=new NotificationAdapter(getApplication());
 
@@ -65,24 +65,7 @@ public class NotificationActivity extends AppCompatActivity implements SwipeRefr
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 
-    @Override
-    public void onRefresh() {
 
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mSwipeRefreshLayout.setRefreshing(false);
-                viewModel.getAllNotifications().observe(NotificationActivity.this, new Observer<List<Notfication>>() {
-                    @Override
-                    public void onChanged(List<Notfication> notfications) {
-                        adapter.setNotifications(notfications);
-                        recyclerView.setAdapter(adapter);
-                    }
-                });
-            }
-        }, 2000);
-
-    }
     private void showCustomDialog()
     {
         Dialog dialog = new Dialog(this);
@@ -94,10 +77,10 @@ public class NotificationActivity extends AppCompatActivity implements SwipeRefr
         yesBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 viewModel.deleteAll();
-                adapter.setNotifications(Collections.emptyList());
-                adapter.notifyDataSetChanged();
-                recyclerView.setAdapter(adapter);
+
                 dialog.dismiss();
             }
         });
