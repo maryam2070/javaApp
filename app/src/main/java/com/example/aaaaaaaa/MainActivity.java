@@ -46,19 +46,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onStop () {
         super .onStop() ;
-        startService( new Intent( this, NotificationService. class )) ;
+     //   startService( new Intent( this, NotificationService. class )) ;
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        startService( new Intent( this, NotificationService. class )) ;
+     //   startService( new Intent( this, NotificationService. class )) ;
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        startService( new Intent( this, NotificationService. class )) ;
+     //   startService( new Intent( this, NotificationService. class )) ;
     }
 
     public void closeApp (View view) {
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        startService( new Intent( this, NotificationService. class )) ;
+      //  startService( new Intent( this, NotificationService. class )) ;
 
         variablesCreation();
 
