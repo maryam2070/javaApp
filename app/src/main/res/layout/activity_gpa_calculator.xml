@@ -5,8 +5,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/primary_color"
     tools:context=".GpaCalculator">
+
 
 
     <LinearLayout
@@ -14,7 +15,21 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/dark_primary_color">
 
+            <ImageView
+                android:id="@+id/back_iv"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:src="@drawable/ic_baseline_arrow_back_ios_24"
+                android:layout_gravity="start"
+                android:backgroundTint="@color/dark_primary_color"
+                android:layout_marginStart="15dp"
+                app:tint="@color/primary_color" />
+        </androidx.appcompat.widget.Toolbar>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -26,9 +41,8 @@
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/dark_primary_color"
                 android:text="Course Code"
-                android:textColor="@color/green"
+                android:textColor="@color/black"
                 android:textSize="24sp" />
 
             <EditText
@@ -36,6 +50,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:ems="10"
+                android:backgroundTint="@color/black"
                 android:layout_marginStart="5dp"
                 android:inputType="textPersonName"
                 android:textColor="@color/black"
@@ -56,10 +71,8 @@
                 android:id="@+id/textView2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/dark_primary_color"
-                android:shadowColor="@color/dark_primary_color"
                 android:text="Credit Hours"
-                android:textColor="@color/green"
+                android:textColor="@color/black"
                 android:textColorHighlight="@color/dark_primary_color"
                 android:textSize="24sp" />
 
@@ -70,6 +83,7 @@
                 android:ems="10"
                 android:layout_marginStart="5dp"
                 android:inputType="number"
+                android:backgroundTint="@color/black"
                 android:minHeight="48dp"
                 android:textColor="@color/black" />
         </LinearLayout>
@@ -86,10 +100,9 @@
                 android:id="@+id/textView3"
                 android:layout_width="143dp"
                 android:layout_height="42dp"
-                android:background="@color/dark_primary_color"
                 android:text="Grade"
                 android:textAlignment="center"
-                android:textColor="@color/green"
+                android:textColor="@color/black"
                 android:textSize="24sp"
                 />
 
@@ -99,26 +112,38 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="5dp"
                 android:padding="5dp"
-
                 android:dropDownSelector="@color/gray"
-                android:foregroundTint="@color/dark_primary_color" />
+                android:backgroundTint="@color/black"
+                android:foregroundTint="@color/black"/>
         </LinearLayout>
-
-        <Button
-            android:id="@+id/Add"
-            android:layout_width="wrap_content"
+        <GridLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"
-            android:backgroundTint="@color/dark_primary_color"
-            android:text="add course"
-            android:visibility="visible"
-            app:layout_constraintBottom_toTopOf="@+id/calculate"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.007"
-            app:layout_constraintStart_toStartOf="parent"
-            app:strokeColor="@color/dark_primary_color" />
+            android:layout_marginBottom="30dp">
+            <Button
+                android:id="@+id/Add"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="30dp"
+                android:backgroundTint="@color/white"
+                android:text="add course"
+                android:visibility="visible"
+                app:strokeColor="@color/dark_primary_color" />
+
+            <Button
+                android:id="@+id/Clear"
+                android:layout_width="130dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="30dp"
+                android:backgroundTint="@color/white"
+                app:strokeColor="@color/dark_primary_color"
+                android:text="clear"
+                />
+        </GridLayout>
+
+
 
         <Button
             android:id="@+id/calculate"
@@ -126,33 +151,35 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginBottom="20dp"
-            android:backgroundTint="@color/dark_primary_color"
+            android:backgroundTint="@color/white"
             android:text="Calculate GPA"
-            app:strokeColor="@color/green" />
+            app:strokeColor="@color/dark_primary_color" />
 
 
-        <TextView
-            android:id="@+id/GPA_view"
-            android:layout_width="222dp"
-            android:layout_height="53dp"
-            android:layout_gravity="center"
-            android:background="@color/dark_primary_color"
-            android:text="Here is your GPA"
-            android:textAlignment="center"
-            android:textAllCaps="false"
-            android:layout_marginBottom="20dp"
-            android:textColor="@color/green"
-            android:textIsSelectable="false"
-            android:textSize="24sp" />
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <Button
-            android:id="@+id/Clear"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:backgroundTint="@color/dark_primary_color"
-            android:text="clear"
-            />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="30dp"
+                android:text="Your GPA "
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/GPA_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginEnd="80dp"
+                android:textColor="@color/black"
+                android:textSize="24sp" />
+
+        </GridLayout>
+
 
     </LinearLayout>
 </ScrollView>

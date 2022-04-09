@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,7 +22,7 @@ public class GpaCalculator extends AppCompatActivity {
     private TextView GPA_view;
     double totalPoints=0,total_credit=0,creditHours=0,gradePoints;
 
-
+    ImageView back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,10 +35,15 @@ public class GpaCalculator extends AppCompatActivity {
         GPA_view = findViewById(R.id.GPA_view);
         spinner = findViewById(R.id.Grades);
         final String[] grades =new String[] {"A", "A-", "B+", "B", "C+", "C", "D", "F" , "Abs" , "I" , "W" , "Ba"};
-
+        back=(ImageView)findViewById(R.id.back_iv);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, grades);
         spinner.setAdapter(adapter);
-
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
@@ -95,7 +101,7 @@ public class GpaCalculator extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 double result = totalPoints/total_credit;
-                GPA_view.setText("Your GPA :"+result);
+                GPA_view.setText(""+result);
 
             }
         });
