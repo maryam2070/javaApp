@@ -4,11 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/projects/aaaaaaaa/app/src/main/res/drawable/ic_baseline_notifications_24.xml" value="0.1885" />
+        <entry key="..\:/projects/aaaaaaaa/app/src/main/res/layout/activity_courses.xml" value="0.18206521739130435" />
         <entry key="..\:/projects/aaaaaaaa/app/src/main/res/layout/activity_gpa_calculator.xml" value="0.22" />
         <entry key="..\:/projects/aaaaaaaa/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/projects/aaaaaaaa/app/src/main/res/layout/activity_notification.xml" value="0.164021164021164" />
         <entry key="..\:/projects/aaaaaaaa/app/src/main/res/layout/activity_web_view.xml" value="0.1" />
         <entry key="..\:/projects/aaaaaaaa/app/src/main/res/layout/confirm_dialog.xml" value="0.19927536231884058" />
+        <entry key="..\:/projects/aaaaaaaa/app/src/main/res/layout/course_item.xml" value="0.14" />
         <entry key="..\:/projects/aaaaaaaa/app/src/main/res/layout/notification_item.xml" value="0.22" />
         <entry key="..\:/projects/aaaaaaaa/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1965" />
         <entry key="..\:/projects/aaaaaaaa/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1965" />

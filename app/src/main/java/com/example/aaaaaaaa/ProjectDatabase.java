@@ -1,24 +1,22 @@
 package com.example.aaaaaaaa;
 
 import android.content.Context;
-import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.room.migration.Migration;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Notfication.class},version = 1, exportSchema = false)
-public abstract class NotificationDatabase extends RoomDatabase {
-    public abstract NotficationDao notficationDao();
+@Database(entities = {Notfication.class,Courses.class},version = 1, exportSchema = false)
+public abstract class ProjectDatabase extends RoomDatabase {
+    public abstract ProjectDao Dao();
 
-    private static volatile NotificationDatabase instance;
+    private static volatile ProjectDatabase instance;
 
     private static final int NUMBER_OF_THREADS = 4;
 
@@ -26,12 +24,12 @@ public abstract class NotificationDatabase extends RoomDatabase {
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
 
-    static NotificationDatabase getDatabase(final Context context) {
+    static ProjectDatabase getDatabase(final Context context) {
         if (instance == null) {
-            synchronized (NotificationDatabase.class) {
+            synchronized (ProjectDatabase.class) {
                 if (instance == null) {
                     instance = Room.databaseBuilder(context.getApplicationContext(),
-                            NotificationDatabase.class, "notification_database")
+                            ProjectDatabase.class, "notification_database")
                             .addCallback(roomCallback)
                             .fallbackToDestructiveMigration()
                             .build();
@@ -52,7 +50,7 @@ public abstract class NotificationDatabase extends RoomDatabase {
             databaseWriteExecutor.execute(() -> {
                 // Populate the database in the background.
                 // If you want to start with more words, just add them.
-                NotficationDao dao = instance.notficationDao();
+                ProjectDao dao = instance.Dao();
                 dao.deleteAll();
                 dao.insertNotfictaion(new Notfication(UUID.randomUUID(),"title","text","12:12"));
             });

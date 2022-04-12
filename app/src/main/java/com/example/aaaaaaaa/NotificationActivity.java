@@ -25,7 +25,7 @@ import java.util.Collections;
 import java.util.List;
 
 public class NotificationActivity extends AppCompatActivity {
-    private NotificationViewModel viewModel;
+    private ProjectViewModel viewModel;
     RecyclerView recyclerView;
     NotificationAdapter adapter;
     ImageView delete;
@@ -40,7 +40,7 @@ public class NotificationActivity extends AppCompatActivity {
 
         adapter=new NotificationAdapter(getApplication());
 
-        viewModel= new ViewModelProvider(this).get(NotificationViewModel.class);/////////
+        viewModel= new ViewModelProvider(this).get(ProjectViewModel.class);/////////
 
         viewModel.getAllNotifications().observe(this, new Observer<List<Notfication>>() {
             @Override

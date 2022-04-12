@@ -8,14 +8,14 @@ import androidx.lifecycle.LiveData;
 
 import java.util.List;
 
-public class NotificationViewModel extends AndroidViewModel {
-    private NotificationRepo repo;
+public class ProjectViewModel extends AndroidViewModel {
+    private ProjectRepo repo;
     private LiveData<List<Notfication>>allNotifications;
 
-    public NotificationViewModel(@NonNull Application application) {
+    public ProjectViewModel(@NonNull Application application) {
         super(application);
 
-        repo=new NotificationRepo(application);
+        repo=new ProjectRepo(application);
         allNotifications= repo.getAllNotifications();
     }
     public void insert(Notfication notfication)

@@ -1,6 +1,5 @@
 package com.example.aaaaaaaa;
 
-import android.app.Activity;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.Service;
@@ -14,13 +13,11 @@ import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
-import androidx.lifecycle.ViewModelProvider;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.sql.Time;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Timer;
@@ -329,7 +326,7 @@ public class NotificationService extends Service {
             LocalDateTime now = LocalDateTime.now();
 
             Notfication notfication = new Notfication(UUID.randomUUID(), title, text, dtf.format(now));
-            NotificationRepo repo = new NotificationRepo(getApplication());
+            ProjectRepo repo = new ProjectRepo(getApplication());
             repo.insert(notfication);
 
             NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -360,7 +357,7 @@ public class NotificationService extends Service {
         LocalDateTime now = LocalDateTime.now();
 
         Notfication notfication=new Notfication(UUID.randomUUID(),title,text,dtf.format(now));
-        NotificationRepo repo=new NotificationRepo(getApplication());
+        ProjectRepo repo=new ProjectRepo(getApplication());
         repo.insert(notfication);
         NotificationAdapter adapter=adapter=new NotificationAdapter(getApplication());
         adapter.notifyDataSetChanged();

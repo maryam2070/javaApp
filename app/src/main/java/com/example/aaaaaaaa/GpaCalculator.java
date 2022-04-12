@@ -2,6 +2,7 @@ package com.example.aaaaaaaa;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -21,7 +22,7 @@ public class GpaCalculator extends AppCompatActivity {
     private Button addCourse,calculate,clear;
     private TextView GPA_view;
     double totalPoints=0,total_credit=0,creditHours=0,gradePoints;
-
+    ImageView courses;
     ImageView back;
 
     @Override
@@ -36,12 +37,22 @@ public class GpaCalculator extends AppCompatActivity {
         spinner = findViewById(R.id.Grades);
         final String[] grades =new String[] {"A", "A-", "B+", "B", "C+", "C", "D", "F" , "Abs" , "I" , "W" , "Ba"};
         back=(ImageView)findViewById(R.id.back_iv);
+        courses=(ImageView)findViewById(R.id.courses);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, grades);
         spinner.setAdapter(adapter);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+
+        courses.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view)
+            {
+                Intent intent=new Intent(GpaCalculator.this,CoursesActivity.class);
+                startActivity(intent);
             }
         });
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
