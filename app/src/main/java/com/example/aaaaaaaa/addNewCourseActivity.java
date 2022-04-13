@@ -3,15 +3,20 @@ package com.example.aaaaaaaa;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.NumberPicker;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 public class addNewCourseActivity extends AppCompatActivity {
@@ -25,33 +30,33 @@ public class addNewCourseActivity extends AppCompatActivity {
             "com.example.coursesregisterd.ExtraCourseCode";
     public static final String ExtraCoursePoints =
             "com.example.coursesregisterd.ExtraCoursePoints";
-    public static final String ExtraCourseGrades=
+    public static final String ExtraCourseGrades =
             "com.example.coursesregisterd.ExtraCourseGrades";
-
+    String selectedGrade;
     private EditText courseName;
     private EditText courseCode;
     private EditText courseCredit;
     private EditText coursePoints;
 
     private Button save;
-
+    private ProjectViewModel courseViewModel;
     String[] Grades;
-    private NumberPicker numberPickerGrades;
+    private Spinner numberPickerGrades;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_course);
 
-        courseName=findViewById(R.id.ETCourseName);
+        courseName = findViewById(R.id.ETCourseName);
         courseCode = findViewById(R.id.ETCourseCode);
         courseCredit = findViewById(R.id.ETCourseCredit);
         coursePoints = findViewById(R.id.ETCoursePoints);
         numberPickerGrades = findViewById(R.id.NumberPickerGrades);
-        Grades = getResources().getStringArray(R.array.Grades);
-        numberPickerGrades.setDisplayedValues(Grades);
-
-        save= findViewById(R.id.save_btn);
+        final String[] grades = new String[]{"A", "A-", "B+", "B", "C+", "C", "D", "F", "Abs", "I", "W", "Ba"};
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, grades);
+        numberPickerGrades.setAdapter(adapter);
+        save = findViewById(R.id.save_btn);
 
 
         save.setOnClickListener(new View.OnClickListener() {
@@ -60,54 +65,49 @@ public class addNewCourseActivity extends AppCompatActivity {
                 saveCourse();
             }
         });
-        numberPickerGrades.setMinValue(0);
-        numberPickerGrades.setMaxValue(4);
-
-//        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_close_24);
+        //   getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_close_24);
         setTitle("Add Course");
 
-    }
 
-    private void saveCourse(){
+        numberPickerGrades.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
+                //   ((TextView) parent.getChildAt(0)).setTextColor(Color.BLACK);
+                //    ((TextView) parent.getChildAt(0)).setTextSize(15);
+                selectedGrade = (String) parent.getItemAtPosition(i);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+    }
+    private void saveCourse() {
         String courseNameSave = courseName.getText().toString();
         String courseCodeSave = courseCode.getText().toString();
         String courseCreditSave = courseCredit.getText().toString();
 
-        int courseGradeSave = numberPickerGrades.getValue();
         String coursePointsSave = coursePoints.getText().toString();
 
-        if(courseCodeSave.trim().isEmpty()||courseNameSave.trim().isEmpty()||courseCreditSave.trim().isEmpty()){
-            Toast.makeText(this,"Please Enter Values", Toast.LENGTH_LONG);
+        if (courseCodeSave.trim().isEmpty() || courseNameSave.trim().isEmpty() || courseCreditSave.trim().isEmpty()) {
+            Toast.makeText(this, "Please Enter Values", Toast.LENGTH_LONG);
             return;
         }
 
         Intent data = new Intent();
-        data.putExtra(ExtraCourseName,courseNameSave);
-        data.putExtra(ExtraCourseGrades,courseGradeSave);
-        data.putExtra(ExtraCourseCode,courseCodeSave);
-        data.putExtra(ExtraCourseCredit,courseCreditSave);
-        data.putExtra(ExtraCoursePoints,coursePointsSave);
+        data.putExtra(ExtraCourseName, courseNameSave);
+        data.putExtra(ExtraCourseGrades, selectedGrade);
+        data.putExtra(ExtraCourseCode, courseCodeSave);
+        data.putExtra(ExtraCourseCredit, courseCreditSave);
+        data.putExtra(ExtraCoursePoints, coursePointsSave);
 
-        setResult(RESULT_OK,data);
+        setResult(RESULT_OK, data);
         finish();
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater menuInflater = getMenuInflater();
-        menuInflater.inflate(R.menu.add_course_menu,menu);
-        return true;
-    }
+}
 
 
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()){
-            case R.id.saveCourse:
-                saveCourse();
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
- }
+
+

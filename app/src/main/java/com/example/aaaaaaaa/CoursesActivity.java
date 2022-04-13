@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -23,12 +24,13 @@ public class CoursesActivity extends AppCompatActivity {
     public static final int ADD_COURSE_REQUEST = 1;
 
     private ProjectViewModel courseViewModel;
-
+    ImageView delete;
+    ImageView back;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_courses);
-
+        back=(ImageView)findViewById(R.id.back_iv);
         FloatingActionButton buttonAddCourse = findViewById(R.id.button_add_course);
         buttonAddCourse.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,7 +39,12 @@ public class CoursesActivity extends AppCompatActivity {
                 startActivityForResult(intent,ADD_COURSE_REQUEST);
             }
         });
-
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         RecyclerView recyclerView = findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
@@ -72,5 +79,29 @@ public class CoursesActivity extends AppCompatActivity {
         }
     }
 
+    private void showCustomDialog()
+    {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.confirm_dialog);
+        dialog.show();
 
+        Button yesBtn=(Button) dialog.findViewById(R.id.yes_btn);
+        Button noBtn=(Button) dialog.findViewById(R.id.no_btn);
+        yesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                courseViewModel.deleteAllCourses();
+
+                dialog.dismiss();
+            }
+        });
+        noBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+    }
 }

@@ -6,57 +6,64 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:background="@color/white"
+    android:layout_margin="20dp"
     app:cardCornerRadius="20dp">
-<GridLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/white">
 
-    <TextView android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:textColor="@color/black"
-        android:text="TextView" android:layout_marginEnd="20dp"
-        android:id="@+id/courseNameItem"/>
+    <GridLayout
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:background="@color/white"
+        android:rowCount="1"
+        android:columnCount="5">
 
-    <TextView
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_gravity="center_vertical"
+        <TextView
+            android:id="@+id/courseNameItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:layout_marginStart="10dp"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/black" />
 
-        android:textColor="@color/black"
-        android:text="TextView" android:layout_marginEnd="20dp"
-        android:id="@+id/courseCodeItem"/>
+        <TextView
+            android:id="@+id/courseCodeItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
 
-    <TextView
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
+            android:layout_marginStart="10dp"
+            android:layout_gravity="center_vertical"
+            android:textColor="@color/black"/>
 
-        android:textColor="@color/black"
-        android:layout_gravity="center_vertical"
-        android:text="TextView" android:layout_marginEnd="20dp"
-        android:id="@+id/coursePointsItem"/>
+        <TextView
+            android:id="@+id/coursePointsItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView"
+            android:layout_gravity="center_vertical"
 
-    <TextView
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_gravity="center_vertical"
+            android:layout_marginStart="20dp"
+            android:textColor="@color/black" />
 
-        android:textColor="@color/black"
-        android:text="TextView" android:layout_marginEnd="28dp"
-        android:id="@+id/courseCridetItem"/>
+        <TextView
+            android:id="@+id/courseCridetItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|end"
+            android:layout_marginStart="20dp"
+            android:text="TextView"
+            android:textColor="@color/black"/>
 
-    <TextView
-        android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:text="TextView"
+        <TextView
+            android:id="@+id/courseGradeItem"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="20dp"
+            android:layout_marginEnd="10dp"
+            android:text="TextView"
+            android:textColor="@color/black" />
 
-        android:textColor="@color/black"
-        android:layout_marginEnd="24dp"
-        android:id="@+id/courseGradeItem"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
-</GridLayout>
+    </GridLayout>
 
 </androidx.cardview.widget.CardView>
