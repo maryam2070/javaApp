@@ -16,12 +16,16 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.Collections;
+import java.util.List;
+
 public class GpaCalculator extends AppCompatActivity {
 
     private Spinner spinner;
     private EditText CreditHours , courseCode , completedH , CGPA;
     private Button addCourse,calculate,clear;
     private TextView GPA_view , total_view;
+    private List<CourseGrade>Courses;
     double totalPoints=0,total_credit=0,creditHours=0,gradePoints ,coursePoints,completedHours=0,previousGPA=0;
     ImageView back;
     RecyclerView viewCourses ;
@@ -30,6 +34,10 @@ public class GpaCalculator extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gpa_calculator);
+
+        Courses= Collections.EMPTY_LIST;
+
+
         completedH=findViewById(R.id.creditH);
         CGPA = findViewById(R.id.CGPA);
         viewCourses = findViewById(R.id.courses_view);
@@ -99,6 +107,8 @@ public class GpaCalculator extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(),"Credit : "+creditHours+"\ngrade : "+gradePoints,Toast.LENGTH_LONG).show();
                     CreditHours.setText("");
                     courseCode.setText("");
+                    ////////////////////////////////////////////////////////////
+                 //   Courses.add(new CourseGrade(courseCode.getText().toString(),))
                 } else {
                     Toast.makeText(getApplicationContext() , "Enter missing data values" , Toast.LENGTH_SHORT).show();
                 }

@@ -31,12 +31,20 @@ public class CoursesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_courses);
         back=(ImageView)findViewById(R.id.back_iv);
+        delete=(ImageView)findViewById(R.id.delete_iv);
         FloatingActionButton buttonAddCourse = findViewById(R.id.button_add_course);
         buttonAddCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(CoursesActivity.this,addNewCourseActivity .class);
                 startActivityForResult(intent,ADD_COURSE_REQUEST);
+            }
+        });
+
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                showCustomDialog();
             }
         });
         back.setOnClickListener(new View.OnClickListener() {
