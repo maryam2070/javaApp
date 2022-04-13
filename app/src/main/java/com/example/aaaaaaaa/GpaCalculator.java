@@ -58,8 +58,8 @@ public class GpaCalculator extends AppCompatActivity {
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
-                ((TextView) parent.getChildAt(0)).setTextColor(Color.BLACK);
-                ((TextView) parent.getChildAt(0)).setTextSize(15);
+             //   ((TextView) parent.getChildAt(0)).setTextColor(Color.BLACK);
+            //    ((TextView) parent.getChildAt(0)).setTextSize(15);
                 String selectedGrade = (String) parent.getItemAtPosition(i);
                 if(selectedGrade.equals("A"))
                     gradePoints = 4.00;

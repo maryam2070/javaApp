@@ -3,20 +3,54 @@
     tools:context=".addNewCourseActivity"
     android:orientation="vertical"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:layout_width="match_parent" xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-<EditText android:layout_height="wrap_content" android:layout_width="match_parent" android:inputType="text" android:hint="Course Name" android:id="@+id/ETCourseName"/>
+<EditText android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:inputType="text"
+    android:hint="Course Name" android:id="@+id/ETCourseName"
+    android:layout_marginTop="50dp"/>
 
-<EditText android:layout_height="wrap_content" android:layout_width="match_parent" android:inputType="text" android:hint="Course Code" android:id="@+id/ETCourseCode"/>
+<EditText android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:inputType="text" android:hint="Course Code"
+    android:id="@+id/ETCourseCode"
+    android:layout_marginTop="20dp"/>
 
-<EditText android:layout_height="wrap_content" android:layout_width="match_parent" android:inputType="number" android:hint="Course Credit" android:id="@+id/ETCourseCredit"/>
+<EditText android:layout_height="wrap_content"
+    android:layout_width="match_parent"
 
-<EditText android:layout_height="wrap_content" android:layout_width="match_parent" android:inputType="numberDecimal" android:hint="Course Points" android:id="@+id/ETCoursePoints"/>
+    android:layout_marginTop="20dp"
+    android:inputType="number" android:hint="Course Credit" android:id="@+id/ETCourseCredit"/>
 
-<TextView android:layout_height="wrap_content" android:layout_width="wrap_content" android:textAppearance="@style/TextAppearance.AppCompat.Medium" android:layout_marginTop="8dp" android:text="Grade"/>
+<EditText android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_marginTop="20dp"
+    android:inputType="numberDecimal"
+    android:hint="Course Points"
+    android:id="@+id/ETCoursePoints"/>
 
-<NumberPicker android:layout_height="wrap_content" android:layout_width="wrap_content" android:id="@+id/NumberPickerGrades"/>
+<TextView android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
 
+    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+    android:layout_marginTop="20dp" android:text="Grade"/>
+
+<NumberPicker android:layout_height="wrap_content"
+    android:layout_width="wrap_content"
+
+    android:layout_marginTop="20dp"
+    android:id="@+id/NumberPickerGrades"/>
+
+<Button
+    android:id="@+id/save_btn"
+    android:layout_marginEnd="30dp"
+    android:layout_marginStart="30dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:text="Save"
+    />
 </androidx.appcompat.widget.LinearLayoutCompat>

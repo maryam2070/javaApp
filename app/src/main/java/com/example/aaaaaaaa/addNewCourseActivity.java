@@ -8,6 +8,8 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.NumberPicker;
 import android.widget.Toast;
@@ -31,6 +33,7 @@ public class addNewCourseActivity extends AppCompatActivity {
     private EditText courseCredit;
     private EditText coursePoints;
 
+    private Button save;
 
     String[] Grades;
     private NumberPicker numberPickerGrades;
@@ -40,20 +43,27 @@ public class addNewCourseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_course);
 
-
-        Grades = getResources().getStringArray(R.array.Grades);
-        numberPickerGrades.setDisplayedValues(Grades);
-
         courseName=findViewById(R.id.ETCourseName);
         courseCode = findViewById(R.id.ETCourseCode);
         courseCredit = findViewById(R.id.ETCourseCredit);
         coursePoints = findViewById(R.id.ETCoursePoints);
         numberPickerGrades = findViewById(R.id.NumberPickerGrades);
+        Grades = getResources().getStringArray(R.array.Grades);
+        numberPickerGrades.setDisplayedValues(Grades);
 
+        save= findViewById(R.id.save_btn);
+
+
+        save.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                saveCourse();
+            }
+        });
         numberPickerGrades.setMinValue(0);
         numberPickerGrades.setMaxValue(4);
 
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_close_24);
+//        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_close_24);
         setTitle("Add Course");
 
     }
