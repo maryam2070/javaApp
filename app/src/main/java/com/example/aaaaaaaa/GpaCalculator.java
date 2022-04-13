@@ -1,8 +1,9 @@
 package com.example.aaaaaaaa;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -18,26 +19,30 @@ import android.widget.Toast;
 public class GpaCalculator extends AppCompatActivity {
 
     private Spinner spinner;
-    private EditText CreditHours;
+    private EditText CreditHours , courseCode , completedH , CGPA;
     private Button addCourse,calculate,clear;
-    private TextView GPA_view;
-    double totalPoints=0,total_credit=0,creditHours=0,gradePoints;
-    ImageView courses;
+    private TextView GPA_view , total_view;
+    double totalPoints=0,total_credit=0,creditHours=0,gradePoints ,coursePoints,completedHours=0,previousGPA=0;
     ImageView back;
-
+    RecyclerView viewCourses ;
+    LinearLayoutManager layoutManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gpa_calculator);
+        completedH=findViewById(R.id.creditH);
+        CGPA = findViewById(R.id.CGPA);
+        viewCourses = findViewById(R.id.courses_view);
         CreditHours = findViewById(R.id.creditHours);
+        courseCode=findViewById(R.id.course_code);
         addCourse = findViewById(R.id.Add);
         calculate = findViewById(R.id.calculate);
         clear = findViewById(R.id.Clear);
-        GPA_view = findViewById(R.id.GPA_view);
+        GPA_view = findViewById(R.id.gpa_view);
+        total_view= findViewById(R.id.total_view);
         spinner = findViewById(R.id.Grades);
         final String[] grades =new String[] {"A", "A-", "B+", "B", "C+", "C", "D", "F" , "Abs" , "I" , "W" , "Ba"};
         back=(ImageView)findViewById(R.id.back_iv);
-        courses=(ImageView)findViewById(R.id.courses);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, grades);
         spinner.setAdapter(adapter);
         back.setOnClickListener(new View.OnClickListener() {
@@ -46,20 +51,11 @@ public class GpaCalculator extends AppCompatActivity {
                 finish();
             }
         });
-
-        courses.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view)
-            {
-                Intent intent=new Intent(GpaCalculator.this,CoursesActivity.class);
-                startActivity(intent);
-            }
-        });
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
-             //   ((TextView) parent.getChildAt(0)).setTextColor(Color.BLACK);
-            //    ((TextView) parent.getChildAt(0)).setTextSize(15);
+                ((TextView) parent.getChildAt(0)).setTextColor(Color.BLACK);
+                ((TextView) parent.getChildAt(0)).setTextSize(15);
                 String selectedGrade = (String) parent.getItemAtPosition(i);
                 if(selectedGrade.equals("A"))
                     gradePoints = 4.00;
@@ -95,14 +91,16 @@ public class GpaCalculator extends AppCompatActivity {
         addCourse.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(!CreditHours.getText().toString().isEmpty()){
+                if((!CreditHours.getText().toString().isEmpty())&&(!courseCode.getText().toString().isEmpty())){
                     creditHours = Double.parseDouble(CreditHours.getText().toString());
-                    totalPoints += (gradePoints*creditHours);
+                    coursePoints=gradePoints*creditHours;
+                    totalPoints += coursePoints;
                     total_credit+=creditHours;
                     Toast.makeText(getApplicationContext(),"Credit : "+creditHours+"\ngrade : "+gradePoints,Toast.LENGTH_LONG).show();
                     CreditHours.setText("");
+                    courseCode.setText("");
                 } else {
-                    Toast.makeText(getApplicationContext() , "Enter credit hours" , Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext() , "Enter missing data values" , Toast.LENGTH_SHORT).show();
                 }
 
 
@@ -111,8 +109,20 @@ public class GpaCalculator extends AppCompatActivity {
         calculate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                double result = totalPoints/total_credit;
-                GPA_view.setText(""+result);
+                if((!CGPA.getText().toString().isEmpty())&&(!completedH.getText().toString().isEmpty()))
+                {   previousGPA= Double.parseDouble(CGPA.getText().toString());
+                    completedHours=Double.parseDouble(completedH.getText().toString());
+                    double result = totalPoints/total_credit;
+                    double Total = ((previousGPA*completedHours)+totalPoints)/(total_credit+completedHours);
+                    GPA_view.setText(""+result);
+                    total_view.setText(""+Total);
+                }
+                else
+                {
+                    double result = totalPoints/total_credit;
+                    GPA_view.setText(""+result);
+                    total_view.setText(""+result);
+                }
 
             }
         });
@@ -122,8 +132,15 @@ public class GpaCalculator extends AppCompatActivity {
                 totalPoints=0;
                 total_credit=0;
                 creditHours=0;
+                completedHours=0;
+                previousGPA=0;
+                coursePoints=0;
+                CGPA.setText("");
+                completedH.setText("");
                 CreditHours.setText("");
-                GPA_view.setText("Here is your GPA");
+                GPA_view.setText("");
+                total_view.setText("");
+
             }
         });
     }

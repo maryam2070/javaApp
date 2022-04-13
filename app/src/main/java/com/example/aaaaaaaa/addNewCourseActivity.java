@@ -72,8 +72,6 @@ public class addNewCourseActivity extends AppCompatActivity {
         numberPickerGrades.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int i, long id) {
-                //   ((TextView) parent.getChildAt(0)).setTextColor(Color.BLACK);
-                //    ((TextView) parent.getChildAt(0)).setTextSize(15);
                 selectedGrade = (String) parent.getItemAtPosition(i);
             }
 
@@ -102,6 +100,7 @@ public class addNewCourseActivity extends AppCompatActivity {
         data.putExtra(ExtraCourseCredit, courseCreditSave);
         data.putExtra(ExtraCoursePoints, coursePointsSave);
 
+        System.out.println("sssssssssss"+selectedGrade);
         setResult(RESULT_OK, data);
         finish();
     }

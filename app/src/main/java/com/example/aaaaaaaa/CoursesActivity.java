@@ -69,8 +69,8 @@ public class CoursesActivity extends AppCompatActivity {
             String courseCode = data.getStringExtra(addNewCourseActivity.ExtraCourseCode);
             int courseCredit = data.getIntExtra(addNewCourseActivity.ExtraCourseCredit,0);
             int coursePoints = data.getIntExtra(addNewCourseActivity.ExtraCoursePoints,0);
-            char courseGrades = data.getCharExtra(addNewCourseActivity.ExtraCourseGrades,'A');
-
+            char courseGrades = (char) data.getCharExtra(addNewCourseActivity.ExtraCourseGrades,'A');
+            System.out.println("sssssssssss"+data.getCharExtra(addNewCourseActivity.ExtraCourseGrades,'A'));
             Course course = new Course(courseName,courseCode,courseGrades,coursePoints,courseCredit);
             courseViewModel.insert(course);
             Toast.makeText(this,"Course Saved" , Toast.LENGTH_LONG).show();

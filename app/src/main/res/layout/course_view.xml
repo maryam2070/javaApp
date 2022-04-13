@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<androidx.cardview.widget.CardView
+    app:cardCornerRadius="20dp"
+    android:background="@color/white"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="50dp">
+
+
+    <GridLayout android:background="@color/white"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="TextView"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_gravity="center_vertical|start"
+        android:id="@+id/course_code"/>
+
+    <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="TextView"
+        android:layout_marginStart="40dp"
+        android:layout_gravity="center_vertical|start"
+        android:id="@+id/View_CreditH"/>
+
+    <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="TextView"
+        android:layout_marginStart="30dp"
+        android:layout_marginEnd="20dp"
+        android:layout_gravity="center_vertical|end"
+        android:id="@+id/View_Grade"/>
+
+    <TextView android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:text="TextView"
+        android:layout_marginEnd="20dp"
+        android:layout_gravity="center_vertical|end"
+        android:id="@+id/View_Points"/>
+
+</GridLayout>
+
+</androidx.cardview.widget.CardView>
