@@ -40,7 +40,7 @@ public class addNewCourseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_course);
 
-/*
+
         Grades = getResources().getStringArray(R.array.Grades);
         numberPickerGrades.setDisplayedValues(Grades);
 
@@ -98,6 +98,6 @@ public class addNewCourseActivity extends AppCompatActivity {
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
-        }*/
+        }
     }
  }

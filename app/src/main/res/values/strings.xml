@@ -1,3 +1,17 @@
 <resources>
     <string name="app_name">Faculty of science ASU</string>
+
+    <string-array name="Grades">
+
+    <item>A</item>
+
+    <item>B</item>
+
+    <item>C</item>
+
+    <item>D</item>
+
+    <item>F</item>
+
+</string-array>
 </resources>

@@ -7,7 +7,6 @@ public class Course {
 
     @PrimaryKey(autoGenerate = true)
     private int idCourse;
-
     private String courseName;
     private String courseCode;
     private Character courseGrade;
