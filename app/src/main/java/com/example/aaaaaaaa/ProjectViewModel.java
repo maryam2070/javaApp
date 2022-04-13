@@ -17,6 +17,7 @@ public class ProjectViewModel extends AndroidViewModel {
 
         repo=new ProjectRepo(application);
         allNotifications= repo.getAllNotifications();
+        allCourses = repo.getAllCourses();
     }
     public void insert(Notfication notfication)
     {
@@ -30,4 +31,26 @@ public class ProjectViewModel extends AndroidViewModel {
     public LiveData<List<Notfication>>getAllNotifications(){
         return allNotifications;
     }
+
+
+    /*------------------------------------------------------------*/
+
+    private LiveData<List<Course>> allCourses;
+    public void insert(Course course){
+        repo.insert(course);
+    }
+    public void update(Course course){
+        repo.update(course);
+    }
+    public void delete(Course course){
+        repo.delete(course);
+    }
+    public void deleteAllCourses(){
+        repo.deleteAllCourses();
+    }
+
+    public LiveData<List<Course>> getAllCourses(){
+        return allCourses;
+    }
+
 }

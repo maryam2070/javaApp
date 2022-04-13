@@ -1,27 +1,25 @@
 package com.example.aaaaaaaa;
-
-import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-import org.jetbrains.annotations.NotNull;
+@Entity(tableName = "course_table")
+public class Course {
 
-import java.io.Serializable;
-
-@Entity(tableName = "Courses")
-public class Courses  implements Serializable {
-
-
-    @NotNull
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     private int idCourse;
 
-    public int getIdCourse() {
-        return idCourse;
-    }
+    private String courseName;
+    private String courseCode;
+    private Character courseGrade;
+    private int courseCredit;
+    private int coursePoints;
 
     public void setIdCourse(int idCourse) {
         this.idCourse = idCourse;
+    }
+
+    public int getIdCourse() {
+        return idCourse;
     }
 
     public String getCourseName() {
@@ -64,29 +62,13 @@ public class Courses  implements Serializable {
         this.coursePoints = coursePoints;
     }
 
-    @ColumnInfo(name="name")
-    private String courseName;
-
-    @ColumnInfo(name="code")
-    private String courseCode;
-
-    @ColumnInfo(name="grade")
-    private Character courseGrade;
-
-    @ColumnInfo(name="credit")
-    private int courseCredit;
-
-    @ColumnInfo(name="points")
-    private int coursePoints;
-
-    public Courses(String courseName, String courseCode, Character courseGrade, int courseCredit, int coursePoints) {
+    public Course(String courseName, String courseCode, Character courseGrade, int courseCredit, int coursePoints) {
         this.courseName = courseName;
         this.courseCode = courseCode;
         this.courseGrade = courseGrade;
         this.courseCredit = courseCredit;
         this.coursePoints = coursePoints;
 
+
     }
 }
-
-
