@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -33,6 +34,7 @@ public class GpaCalculator extends AppCompatActivity {
 
     double totalPoints=0,total_credit=0,creditHours=0,gradePoints ,coursePoints,completedHours=0,previousGPA=0;
     ImageView back;
+    ImageView courses;
     RecyclerView viewCourses ;
     LinearLayoutManager layoutManager;
     @Override
@@ -63,12 +65,19 @@ public class GpaCalculator extends AppCompatActivity {
         spinner = findViewById(R.id.Grades);
         final String[] grades =new String[] {"A", "A-", "B+", "B", "C+", "C", "D", "F" , "Abs" , "I" , "W" , "Ba"};
         back=(ImageView)findViewById(R.id.back_iv);
+        courses=(ImageView)findViewById(R.id.courses);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_dropdown_item, grades);
         spinner.setAdapter(adapter);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+        courses.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(GpaCalculator.this,CoursesActivity.class));
             }
         });
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
