@@ -42,35 +42,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ImageButton notificationBtn;
 
 
-
-    @Override
-    protected void onStop () {
-        super .onStop() ;
-     //   startService( new Intent( this, NotificationService. class )) ;
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-     //   startService( new Intent( this, NotificationService. class )) ;
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-     //   startService( new Intent( this, NotificationService. class )) ;
-    }
-
-    public void closeApp (View view) {
-        finish() ;
-    }
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-      //  startService( new Intent( this, NotificationService. class )) ;
+     //   startForegroundService(new Intent( this, NotificationService. class ));
 
         variablesCreation();
 

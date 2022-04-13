@@ -32,10 +32,7 @@ public class NotificationService extends Service {
     public int c=1;
     public static final String NOTIFICATION_CHANNEL_ID = "10001" ;
     private final static String default_notification_channel_id = "default" ;
-    Timer timer ;
-    TimerTask timerTask ;
-    String TAG = "Timers" ;
-    int Your_X_SECS = 5 ;
+
     @Override
     public IBinder onBind (Intent arg0) {
         return null;
@@ -43,42 +40,17 @@ public class NotificationService extends Service {
     @Override
     public int onStartCommand (Intent intent , int flags , int startId) {
         super .onStartCommand(intent , flags , startId) ;
-        startTimer() ;
+        Load();
         sp = getSharedPreferences("MySharedPref",MODE_PRIVATE);
         myEdit = sp.edit();
         return START_STICKY ;
     }
+    @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     public void onDestroy () {
-        Log. e ( TAG , "onDestroy" ) ;
-        stopTimerTask() ;
+        startForegroundService(new Intent( this, NotificationService. class ));
+        Load();
         super .onDestroy() ;
-    }
-    //we are going to use a handler to be able to run in our TimerTask
-    final Handler handler = new Handler() ;
-    public void startTimer () {
-        timer = new Timer() ;
-        initializeTimerTask() ;
-        timer .schedule( timerTask , 5000 , Your_X_SECS * 1000 ) ; //
-    }
-    public void stopTimerTask () {
-        if ( timer != null ) {
-            timer .cancel() ;
-            timer = null;
-        }
-    }
-    public void initializeTimerTask () {
-        timerTask = new TimerTask() {
-            public void run () {
-                handler .post( new Runnable() {
-                    public void run () {
-
-                        Load();
-
-                    }
-                }) ;
-            }
-        } ;
     }
 
     public void Load() {
