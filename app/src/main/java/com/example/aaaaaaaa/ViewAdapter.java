@@ -12,7 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ViewAdapter extends RecyclerView.Adapter<ViewAdapter.ViewHolder> {
-    private List<CourseGrade> viewList = new ArrayList<>();
+    private ArrayList<CourseGrade> viewList = new ArrayList<>();
+
+    public void setList(ArrayList<CourseGrade> l)
+    {
+        viewList=l;
+    }
     @NonNull
     @Override
     public ViewAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

@@ -1,5 +1,7 @@
 package com.example.aaaaaaaa;
 
+import static java.util.Collections.emptyList;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -25,7 +28,9 @@ public class GpaCalculator extends AppCompatActivity {
     private EditText CreditHours , courseCode , completedH , CGPA;
     private Button addCourse,calculate,clear;
     private TextView GPA_view , total_view;
-    private List<CourseGrade>Courses;
+    ArrayList<CourseGrade>Courses= new ArrayList<>();;////////////
+    ViewAdapter adapter1=new ViewAdapter();//////////
+
     double totalPoints=0,total_credit=0,creditHours=0,gradePoints ,coursePoints,completedHours=0,previousGPA=0;
     ImageView back;
     RecyclerView viewCourses ;
@@ -35,12 +40,19 @@ public class GpaCalculator extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_gpa_calculator);
 
-        Courses= Collections.EMPTY_LIST;
+        viewCourses = findViewById(R.id.courses_view);//////////
+        adapter1.setList(Courses);///////////
+        viewCourses.setAdapter(adapter1);////////
+        viewCourses.setLayoutManager(new LinearLayoutManager(GpaCalculator.this));////////
 
+        CourseGrade c=new CourseGrade("aaaa","aaaa",11,12.0);
+        Courses.add(c);
+        Courses.add(new CourseGrade("aaaa","aaaa",11,12.0));
+        Courses.add(new CourseGrade("aaaa","aaaa",11,12.0));
 
         completedH=findViewById(R.id.creditH);
         CGPA = findViewById(R.id.CGPA);
-        viewCourses = findViewById(R.id.courses_view);
+
         CreditHours = findViewById(R.id.creditHours);
         courseCode=findViewById(R.id.course_code);
         addCourse = findViewById(R.id.Add);
@@ -109,6 +121,9 @@ public class GpaCalculator extends AppCompatActivity {
                     courseCode.setText("");
                     ////////////////////////////////////////////////////////////
                  //   Courses.add(new CourseGrade(courseCode.getText().toString(),))
+                    adapter1.setList(Courses);////////
+                    viewCourses.setAdapter(adapter1);/////////
+                    ////////
                 } else {
                     Toast.makeText(getApplicationContext() , "Enter missing data values" , Toast.LENGTH_SHORT).show();
                 }
