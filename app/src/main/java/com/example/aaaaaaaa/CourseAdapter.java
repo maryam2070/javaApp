@@ -43,7 +43,9 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseHold
         this.courses = courses;
         notifyDataSetChanged();
     }
-
+    public Course getCourseAt(int position){
+        return courses.get(position);
+    }
     class CourseHolder extends RecyclerView.ViewHolder{
         private TextView textViewName,textViewCode,textViewCredit,textViewGrade,textViewPoints;
 
@@ -57,4 +59,5 @@ public class CourseAdapter extends RecyclerView.Adapter<CourseAdapter.CourseHold
             textViewGrade = itemView.findViewById(R.id.courseGradeItem);
         }
     }
+
 }

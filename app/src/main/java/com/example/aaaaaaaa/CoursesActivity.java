@@ -1,9 +1,11 @@
 package com.example.aaaaaaaa;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -23,7 +25,8 @@ public class CoursesActivity extends AppCompatActivity {
 
     public static final int ADD_COURSE_REQUEST = 1;
 
-    private ProjectViewModel courseViewModel;
+     ProjectViewModel courseViewModel;
+    CourseAdapter courseAdapter;
     ImageView delete;
     ImageView back;
     @Override
@@ -57,7 +60,7 @@ public class CoursesActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setHasFixedSize(true);
 
-        CourseAdapter courseAdapter = new CourseAdapter();
+        courseAdapter = new CourseAdapter();
         recyclerView.setAdapter(courseAdapter);
 
         courseViewModel = new ViewModelProvider(this, (ViewModelProvider.Factory) ViewModelProvider.AndroidViewModelFactory.getInstance(getApplication())).get(ProjectViewModel.class);
@@ -67,7 +70,26 @@ public class CoursesActivity extends AppCompatActivity {
                 courseAdapter.setCourses(courses);
             }
         });
+
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0,
+                ItemTouchHelper.LEFT|ItemTouchHelper.RIGHT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView recyclerView, @NonNull RecyclerView.ViewHolder viewHolder, @NonNull RecyclerView.ViewHolder target) {
+                return false;
+            }
+
+
+            //before add this add function called getCourseAt() in CourseAdapter class there exist under setCourse function
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                showCustomDialog2(viewHolder);
+
+
+            }
+        }).attachToRecyclerView(recyclerView);
     }
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
@@ -101,7 +123,31 @@ public class CoursesActivity extends AppCompatActivity {
 
 
                 courseViewModel.deleteAllCourses();
+                dialog.dismiss();
+            }
+        });
+        noBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                dialog.dismiss();
+            }
+        });
+    }
+    private void showCustomDialog2(RecyclerView.ViewHolder viewHolder)
+    {
+        Dialog dialog = new Dialog(this);
+        dialog.setContentView(R.layout.confirm_dialog);
+        dialog.show();
 
+        Button yesBtn=(Button) dialog.findViewById(R.id.yes_btn);
+        Button noBtn=(Button) dialog.findViewById(R.id.no_btn);
+        yesBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                courseViewModel.delete(courseAdapter.getCourseAt(viewHolder.getAdapterPosition()));
+                Toast.makeText(CoursesActivity.this,"Course Deleted" ,Toast.LENGTH_LONG);;
                 dialog.dismiss();
             }
         });
