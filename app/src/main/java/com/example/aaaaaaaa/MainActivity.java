@@ -30,7 +30,6 @@ import java.util.UUID;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private WebView webView;
     private CardView btn1;
     private CardView btn2;
     private CardView btn3;
@@ -39,22 +38,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private CardView btn6;
     private CardView btn7;
     private TextView curTime;
+
     private ImageButton notificationBtn;
 
-
-    @RequiresApi(api = Build.VERSION_CODES.O)
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    //    startForegroundService(new Intent( this, NotificationService. class ));
-    }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        /////**********************//////////////
         startService(new Intent( this, NotificationService. class ));
 
         variablesCreation();
@@ -96,15 +89,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         if(view==btn1)
         {
-            //notes
             Intent intent=new Intent(this,WebViewActivity.class);
             intent.putExtra("URL","https://science.asu.edu.eg/ar/events");
             startActivity(intent);
         }
         if(view==btn2)
         {
+            //////////
             Intent intent=new Intent(this,WebViewActivity.class);
-            intent.putExtra("URL","https://asu2learn.asu.edu.eg/science/?redirect=0");
+            intent.putExtra("URL","http://newportal.asu.edu.eg/science/ar/page/47/private-ads");
             startActivity(intent);
         }
         if(view==btn3)
@@ -127,14 +120,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             //facebook
             Intent intent=new Intent(this,WebViewActivity.class);
-            intent.putExtra("URL","https://asu2learn.asu.edu.eg/science/?redirect=0");
+            intent.putExtra("URL","Www.facebook.com/672109416181270");
             startActivity(intent);
         }
         if(view==btn7)
         {
-            //facebook
             Intent intent=new Intent(this,WebViewActivity.class);
-            intent.putExtra("URL","https://asu2learn.asu.edu.eg/science/?redirect=0");
+            intent.putExtra("URL","https://forms.office.com/pages/responsepage.aspx?id=ZVH5axNBiEGbe8tsDBmKW-cPAmuMx6dNvjiN17RIMfRUMkRPR0xUMldPOEcwQUNFN1lKUEZLNk9XMy4u");
             startActivity(intent);
         }
 

@@ -87,11 +87,17 @@ public class NotificationService extends Service {
         AnnouncementTask task2 = new AnnouncementTask();
         NoteTask task3 = new NoteTask();
         NewsTask task4=new NewsTask();
-
-        task1.execute("https://sciasuedu-my.sharepoint.com/personal/hmbahig_sci_asu_edu_eg/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fhmbahig%5Fsci%5Fasu%5Fedu%5Feg%2FDocuments%2FCrypto%2D%20COMP%20308%20%2D%20Summer");
+////////////////***********     links to test notifications ********//////////
+   /*    task1.execute("https://sciasuedu-my.sharepoint.com/personal/hmbahig_sci_asu_edu_eg/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fhmbahig%5Fsci%5Fasu%5Fedu%5Feg%2FDocuments%2FCrypto%2D%20COMP%20308%20%2D%20Summer");
         task2.execute("https://sciasuedu-my.sharepoint.com/personal/hmbahig_sci_asu_edu_eg/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fhmbahig%5Fsci%5Fasu%5Fedu%5Feg%2FDocuments%2FCrypto%2D%20COMP%20308%20%2D%20Summer");
         task3.execute("https://sciasuedu-my.sharepoint.com/personal/hmbahig_sci_asu_edu_eg/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fhmbahig%5Fsci%5Fasu%5Fedu%5Feg%2FDocuments%2FCrypto%2D%20COMP%20308%20%2D%20Summer");
-        task4.execute("https://www.c-sharpcorner.com/blogs/everything-you-need-to-know-about-contextrelated-memory-leaks-in-android#:~:text=Context-related%20memory%20leaks%20in%20Android%20These%20Contexts%20are,to%20access%20the%20app%E2%80%99s%20resources%20and%20environment%20data.");
+        task4.execute("https://www.c-sharpcorner.com/blogs/everything-you-need-to-know-about-contextrelated-memory-leaks-in-android#:~:text=Context-related%20memory%20leaks%20in%20Android%20These%20Contexts%20are,to%20access%20the%20app%E2%80%99s%20resources%20and%20environment%20data.");*/
+////////////////////**************** actual links  ***********////////
+
+        task1.execute("https://science.asu.edu.eg/ar/events");
+        task2.execute("https://science.asu.edu.eg/ar/announcements");
+        task3.execute("http://newportal.asu.edu.eg/science/ar/page/47/private-ads");
+        task4.execute("https://science.asu.edu.eg/ar/news");
 
     }
 
@@ -132,8 +138,8 @@ public class NotificationService extends Service {
                     in.close();
                     s.trimToSize();
                     String olds = sp.getString("s1", "");
-                    System.out.println("ccccccccccc1111111 "+s);
-                    System.out.println("ccccccccccc111111111 "+olds);
+                    System.out.println("ccccccccccc"+s);
+                    System.out.println("ccccccccccc"+olds);
 
                     if (!(s.toString().equals(olds.toString()))  ) {
                         if(s.charAt(0) == '<' && olds.charAt(0) == '<')
@@ -158,8 +164,8 @@ public class NotificationService extends Service {
         protected String doInBackground(String ... urls) {
 
             try {
-                if (sp.getString("firstTime1", "") == "") {
-                    myEdit.putString("firstTime1", "done");
+                if (sp.getString("firstTime2", "") == "") {
+                    myEdit.putString("firstTime2", "done");
                     myEdit.commit();
                     StringBuilder s1;
                     URL url = new URL(urls[0]);
@@ -172,7 +178,7 @@ public class NotificationService extends Service {
                         s1.append(inputLine);
                     in.close();
                     s1.trimToSize();
-                    myEdit.putString("s1", s1.toString());
+                    myEdit.putString("s2", s1.toString());
                     myEdit.commit();
                     return s1.toString();
                 } else {
@@ -187,14 +193,14 @@ public class NotificationService extends Service {
                         s.append(inputLine);
                     in.close();
                     s.trimToSize();
-                    String olds = sp.getString("s1", "");
+                    String olds = sp.getString("s2", "");
                     System.out.println("ccccccccccc1111111 "+s);
                     System.out.println("ccccccccccc111111111 "+olds);
 
                     if (!(s.toString().equals(olds.toString()))  ) {
                         if(s.charAt(0) == '<' && olds.charAt(0) == '<')
                               createNotification("Faculty of science","We have new note");
-                        myEdit.putString("s1", s.toString());
+                        myEdit.putString("s2", s.toString());
                         myEdit.commit();
                     }
                     return s.toString();
@@ -213,8 +219,8 @@ public class NotificationService extends Service {
         protected String doInBackground(String ... urls) {
 
             try {
-                if (sp.getString("firstTime1", "") == "") {
-                    myEdit.putString("firstTime1", "done");
+                if (sp.getString("firstTime3", "") == "") {
+                    myEdit.putString("firstTime3", "done");
                     myEdit.commit();
                     StringBuilder s1;
                     URL url = new URL(urls[0]);
@@ -227,7 +233,7 @@ public class NotificationService extends Service {
                         s1.append(inputLine);
                     in.close();
                     s1.trimToSize();
-                    myEdit.putString("s1", s1.toString());
+                    myEdit.putString("s3", s1.toString());
                     myEdit.commit();
                     return s1.toString();
                 } else {
@@ -242,14 +248,14 @@ public class NotificationService extends Service {
                         s.append(inputLine);
                     in.close();
                     s.trimToSize();
-                    String olds = sp.getString("s1", "");
+                    String olds = sp.getString("s3", "");
                     System.out.println("ccccccccccc1111111 "+s);
                     System.out.println("ccccccccccc111111111 "+olds);
 
                     if (!(s.toString().equals(olds.toString()))  ) {
                         if(s.charAt(0) == '<' && olds.charAt(0) == '<')
                              createNotification("Faculty of science","We have new News");
-                        myEdit.putString("s1", s.toString());
+                        myEdit.putString("s3", s.toString());
                         myEdit.commit();
                     }
 
@@ -271,8 +277,8 @@ public class NotificationService extends Service {
             // if(c==1) {
             c++;
             try {
-                if (sp.getString("firstTime1", "") == "") {
-                    myEdit.putString("firstTime1", "done");
+                if (sp.getString("firstTime4", "") == "") {
+                    myEdit.putString("firstTime4", "done");
                     myEdit.commit();
                     StringBuilder s1;
                     URL url = new URL(urls[0]);
@@ -285,7 +291,7 @@ public class NotificationService extends Service {
                         s1.append(inputLine);
                     in.close();
                     s1.trimToSize();
-                    myEdit.putString("s1", s1.toString());
+                    myEdit.putString("s4", s1.toString());
                     myEdit.commit();
                     return s1.toString();
                 } else {
@@ -300,14 +306,14 @@ public class NotificationService extends Service {
                         s.append(inputLine);
                     in.close();
                     s.trimToSize();
-                    String olds = sp.getString("s1", "");
+                    String olds = sp.getString("s4", "");
                     System.out.println("ccccccccccc1111111 " + s);
                     System.out.println("ccccccccccc111111111 " + olds);
 
                     if (!(s.toString().equals(olds.toString())) ) {
                         if( s.charAt(0) == '<' && olds.charAt(0) == '<')
                             createNotification("Faculty of science", "We have new announcement");
-                        myEdit.putString("s1", s.toString());
+                        myEdit.putString("s4", s.toString());
                         myEdit.commit();
                     }
 
@@ -317,35 +323,6 @@ public class NotificationService extends Service {
             } catch (Exception e) {
                 return e.getMessage();
             }
-
-        }
-
-        @RequiresApi(api = Build.VERSION_CODES.O)
-        private void createNotification(String title, String text) {
-
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-            LocalDateTime now = LocalDateTime.now();
-
-            Notfication notfication = new Notfication(UUID.randomUUID(), title, text, dtf.format(now));
-            ProjectRepo repo = new ProjectRepo(getApplication());
-            repo.insert(notfication);
-
-            NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-            NotificationCompat.Builder mBuilder = new NotificationCompat.Builder(getApplicationContext(), default_notification_channel_id);
-            mBuilder.setContentTitle(title);
-            mBuilder.setContentText(text);
-            mBuilder.setTicker("Faculty of science ASU");
-            mBuilder.setSmallIcon(R.drawable.logo2);
-            mBuilder.setAutoCancel(true);
-            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-                int importance = NotificationManager.IMPORTANCE_HIGH;
-                NotificationChannel notificationChannel = new NotificationChannel(NOTIFICATION_CHANNEL_ID, "NOTIFICATION_CHANNEL_NAME", importance);
-                mBuilder.setChannelId(NOTIFICATION_CHANNEL_ID);
-                assert mNotificationManager != null;
-                mNotificationManager.createNotificationChannel(notificationChannel);
-            }
-            assert mNotificationManager != null;
-            mNotificationManager.notify((int) System.currentTimeMillis(), mBuilder.build());
 
         }
 

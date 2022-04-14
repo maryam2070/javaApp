@@ -3,14 +3,18 @@ package com.example.aaaaaaaa;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
 public class WebViewActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
 
     private WebView webView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
+    private String curUrl="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,10 +25,32 @@ public class WebViewActivity extends AppCompatActivity implements SwipeRefreshLa
         mSwipeRefreshLayout.setOnRefreshListener(this);
         if(getIntent().hasExtra("URL"))
         {
+            curUrl=getIntent().getStringExtra("URL");
+            webView.getSettings().setJavaScriptEnabled(true);
+            webView.setWebViewClient(new MyWebViewClient());
             webView.loadUrl(getIntent().getStringExtra("URL"));
         }
     }
+    @Override public void onBackPressed() {
+        if(webView.canGoBack()) {
+            webView.goBack();
+        } else {
+            super.onBackPressed();
+        }
+    }
 
+    private class MyWebViewClient extends WebViewClient {
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            if (Uri.parse(url).getHost().equals(getIntent().getStringExtra("URL"))) {
+                return false;
+            }
+            curUrl=String.valueOf(Uri.parse(url));
+            webView.loadUrl(String.valueOf(Uri.parse(url)));
+
+            return true;
+        }
+    }
     @Override
     public void onRefresh() {
 
