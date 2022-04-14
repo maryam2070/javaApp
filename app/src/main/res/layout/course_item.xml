@@ -18,20 +18,21 @@
 
         <TextView
             android:id="@+id/courseNameItem"
-            android:layout_width="110dp"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:text="Data Structure"
-            android:layout_marginStart="20dp"
             android:layout_gravity="center_vertical"
+            android:layout_marginStart="20dp"
+            android:text="Data Structure"
             android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/courseCodeItem"
-            android:layout_width="110dp"
+            android:layout_width="89dp"
             android:layout_height="wrap_content"
-            android:text="comp ءءءء"
             android:layout_gravity="center_vertical"
-            android:textColor="@color/black"/>
+            android:layout_marginEnd="10dp"
+            android:text="comp ءءءء"
+            android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/coursePointsItem"
@@ -53,7 +54,7 @@
 
         <TextView
             android:id="@+id/courseGradeItem"
-            android:layout_width="30dp"
+            android:layout_width="43dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|end"
             android:layout_marginEnd="20dp"
