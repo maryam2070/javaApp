@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         {
             //////////
             Intent intent=new Intent(this,WebViewActivity.class);
-            intent.putExtra("URL","http://newportal.asu.edu.eg/science/ar/page/47/private-ads");
+            intent.putExtra("URL","https://science.asu.edu.eg/ar/page/47/private-ads");
             startActivity(intent);
         }
         if(view==btn3)

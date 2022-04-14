@@ -36,8 +36,9 @@
         android:layout_marginTop="25dp"
         android:layout_marginEnd="16dp"
         android:hint="Course Name"
-        app:boxStrokeColor="@color/primary_color"
+        app:boxStrokeColor="@color/black"
         android:textColorHint="@color/black"
+        app:hintTextColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -59,8 +60,9 @@
         android:layout_marginTop="25dp"
         android:layout_marginEnd="16dp"
         android:hint="Course Code"
+        app:boxStrokeColor="@color/black"
         android:textColorHint="@color/black"
-        app:boxStrokeColor="@color/primary_color"
+        app:hintTextColor="@color/black"
         style="@style/outlineBorderTextInputs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -83,8 +85,9 @@
         android:layout_marginTop="25dp"
         android:layout_marginEnd="16dp"
         android:hint="Course Credit"
+        app:boxStrokeColor="@color/black"
         android:textColorHint="@color/black"
-        app:boxStrokeColor="@color/primary_color"
+        app:hintTextColor="@color/black"
         style="@style/outlineBorderTextInputs"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
@@ -99,29 +102,6 @@
             android:textColor="@color/black" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/TLCoursePoints"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="16dp"
-        android:hint="Course Points"
-        android:textColorHint="@color/black"
-        app:boxStrokeColor="@color/primary_color"
-        style="@style/outlineBorderTextInputs"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/ETCoursePoints"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:inputType="text"
-            android:singleLine="true"
-
-            android:textColor="@color/black" />
-    </com.google.android.material.textfield.TextInputLayout>
 
 
     <GridLayout

@@ -1,3 +1,4 @@
+
 package com.example.aaaaaaaa;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -9,9 +10,9 @@ public class Course {
     private int idCourse;
     private String courseName;
     private String courseCode;
-    private Character courseGrade;
+    private String courseGrade;
     private int courseCredit;
-    private int coursePoints;
+    private double coursePoints;
 
     public void setIdCourse(int idCourse) {
         this.idCourse = idCourse;
@@ -37,11 +38,11 @@ public class Course {
         this.courseCode = courseCode;
     }
 
-    public Character getCourseGrade() {
+    public String getCourseGrade() {
         return courseGrade;
     }
 
-    public void setCourseGrade(Character courseGrade) {
+    public void setCourseGrade(String courseGrade) {
         this.courseGrade = courseGrade;
     }
 
@@ -53,15 +54,15 @@ public class Course {
         this.courseCredit = courseCredit;
     }
 
-    public int getCoursePoints() {
+    public double getCoursePoints() {
         return coursePoints;
     }
 
-    public void setCoursePoints(int coursePoints) {
+    public void setCoursePoints(double coursePoints) {
         this.coursePoints = coursePoints;
     }
 
-    public Course(String courseName, String courseCode, Character courseGrade, int courseCredit, int coursePoints) {
+    public Course(String courseName, String courseCode, String courseGrade, int courseCredit, double coursePoints) {
         this.courseName = courseName;
         this.courseCode = courseCode;
         this.courseGrade = courseGrade;
@@ -71,3 +72,4 @@ public class Course {
 
     }
 }
+

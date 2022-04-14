@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.app.Dialog;
 import android.content.Intent;
@@ -25,10 +26,12 @@ public class CoursesActivity extends AppCompatActivity {
 
     public static final int ADD_COURSE_REQUEST = 1;
 
-     ProjectViewModel courseViewModel;
+    ProjectViewModel courseViewModel;
     CourseAdapter courseAdapter;
     ImageView delete;
     ImageView back;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +90,26 @@ public class CoursesActivity extends AppCompatActivity {
 
             }
         }).attachToRecyclerView(recyclerView);
+
+
+
+        SwipeRefreshLayout swipeRefreshLayout = (SwipeRefreshLayout)findViewById(R.id.refreshLayout);
+        swipeRefreshLayout.setOnRefreshListener(
+                new SwipeRefreshLayout.OnRefreshListener() {
+                    @Override
+                    public void onRefresh() {
+                        courseViewModel.getAllCourses().observe(CoursesActivity.this, new Observer<List<Course>>() {
+                            @Override
+                            public void onChanged(List<Course> courses) {
+                                courseAdapter.setCourses(courses);
+                                recyclerView.setAdapter(courseAdapter);
+                            }
+                        });
+                        swipeRefreshLayout.setRefreshing(false);
+                    }
+                }
+        );
+
     }
 
 
@@ -98,10 +121,10 @@ public class CoursesActivity extends AppCompatActivity {
             String courseName = data.getStringExtra(addNewCourseActivity.ExtraCourseName);
             String courseCode = data.getStringExtra(addNewCourseActivity.ExtraCourseCode);
             int courseCredit = data.getIntExtra(addNewCourseActivity.ExtraCourseCredit,0);
-            int coursePoints = data.getIntExtra(addNewCourseActivity.ExtraCoursePoints,0);
-            char courseGrades = (char) data.getCharExtra(addNewCourseActivity.ExtraCourseGrades,'A');
+            double coursePoints = data.getDoubleExtra(addNewCourseActivity.ExtraCoursePoints,0);
+            String courseGrades = data.getStringExtra(addNewCourseActivity.ExtraCourseGrades);
             System.out.println("sssssssssss"+data.getCharExtra(addNewCourseActivity.ExtraCourseGrades,'A'));
-            Course course = new Course(courseName,courseCode,courseGrades,coursePoints,courseCredit);
+            Course course = new Course(courseName,courseCode,courseGrades,courseCredit,coursePoints);
             courseViewModel.insert(course);
             Toast.makeText(this,"Course Saved" , Toast.LENGTH_LONG).show();
         }else{

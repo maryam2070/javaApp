@@ -18,36 +18,32 @@
 
         <TextView
             android:id="@+id/courseNameItem"
-            android:layout_width="wrap_content"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:text="Data Structure"
-            android:layout_marginStart="10dp"
+            android:layout_marginStart="20dp"
             android:layout_gravity="center_vertical"
             android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/courseCodeItem"
-            android:layout_width="wrap_content"
+            android:layout_width="110dp"
             android:layout_height="wrap_content"
             android:text="comp ءءءء"
-
-            android:layout_marginStart="30dp"
             android:layout_gravity="center_vertical"
             android:textColor="@color/black"/>
 
         <TextView
             android:id="@+id/coursePointsItem"
-            android:layout_width="wrap_content"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:text="0"
-
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="30dp"
             android:textColor="@color/black" />
 
         <TextView
             android:id="@+id/courseCridetItem"
-            android:layout_width="wrap_content"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|end"
             android:layout_marginEnd="10dp"
@@ -57,10 +53,10 @@
 
         <TextView
             android:id="@+id/courseGradeItem"
-            android:layout_width="wrap_content"
+            android:layout_width="30dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|end"
-            android:layout_marginEnd="50dp"
+            android:layout_marginEnd="20dp"
             android:text="A"
             android:textColor="@color/black" />
 

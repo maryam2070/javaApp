@@ -12,7 +12,7 @@ import java.util.UUID;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {Notfication.class,Course.class},version = 2, exportSchema = false)
+@Database(entities = {Notfication.class,Course.class},version = 3, exportSchema = false)
 public abstract class ProjectDatabase extends RoomDatabase {
     public abstract ProjectDao Dao();
 

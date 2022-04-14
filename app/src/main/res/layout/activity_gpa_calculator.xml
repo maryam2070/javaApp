@@ -58,13 +58,15 @@
             android:layout_marginTop="25dp"
             android:layout_marginEnd="16dp"
             android:hint="CGPA"
-            app:boxStrokeColor="@color/primary_color"
+            app:boxStrokeColor="@color/black"
             android:textColorHint="@color/black"
+            app:hintTextColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/CGPA"
+                app:boxStrokeColor="@color/black"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="text"
@@ -81,8 +83,9 @@
             android:layout_gravity="end"
             android:layout_marginEnd="15dp"
             android:hint="credit hours"
-            app:boxStrokeColor="@color/primary_color"
+            app:boxStrokeColor="@color/black"
             android:textColorHint="@color/black"
+            app:hintTextColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
@@ -92,6 +95,7 @@
                 android:layout_height="wrap_content"
                 android:inputType="text"
                 android:singleLine="true"
+                app:boxStrokeColor="@color/black"
                 android:textColor="@color/black" />
         </com.google.android.material.textfield.TextInputLayout>
 
@@ -111,8 +115,9 @@
             android:layout_width="match_parent"
             android:layout_gravity="end|center_horizontal"
             android:hint="Course Code"
-            app:boxStrokeColor="@color/primary_color"
+            app:boxStrokeColor="@color/black"
             android:textColorHint="@color/black"
+            app:hintTextColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
             <com.google.android.material.textfield.TextInputEditText
@@ -141,8 +146,9 @@
             android:layout_width="match_parent"
             android:layout_gravity="end|center_horizontal"
             android:hint="Credit Hours"
-            app:boxStrokeColor="@color/primary_color"
+            app:boxStrokeColor="@color/black"
             android:textColorHint="@color/black"
+            app:hintTextColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
             <com.google.android.material.textfield.TextInputEditText
@@ -237,6 +243,7 @@
         android:layout_width="wrap_content"
         android:layout_marginStart="30dp"
         android:layout_gravity="start"
+        android:layout_marginTop="10dp"
         android:id="@+id/total"
         android:textSize="19sp"
         android:textColor="@color/black"
@@ -247,6 +254,7 @@
         android:layout_width="wrap_content"
         android:layout_gravity="end"
         android:id="@+id/total_view"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="80dp"
         android:textSize="19sp"
         android:textColor="@color/black"/>
