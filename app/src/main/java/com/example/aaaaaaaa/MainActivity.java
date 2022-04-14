@@ -44,11 +44,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    //    startForegroundService(new Intent( this, NotificationService. class ));
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-     //   startForegroundService(new Intent( this, NotificationService. class ));
+        startService(new Intent( this, NotificationService. class ));
 
         variablesCreation();
 
