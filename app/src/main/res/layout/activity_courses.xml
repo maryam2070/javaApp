@@ -54,7 +54,7 @@
             tools:listitem="@layout/course_item" />
 
     </LinearLayout>
-
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/button_add_course"
         android:layout_width="wrap_content"
@@ -70,5 +70,5 @@
         app:layout_constraintHorizontal_bias="0.887"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
