@@ -163,6 +163,7 @@ public class GpaCalculator extends AppCompatActivity {
                 CGPA.setText("");
                 completedH.setText("");
                 CreditHours.setText("");
+                courseCode.setText("");
                 GPA_view.setText("");
                 total_view.setText("");
                 Courses.clear();
