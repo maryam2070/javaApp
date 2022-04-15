@@ -3,15 +3,15 @@
 
     <string-array name="Grades">
 
-    <item>A</item>
+        <item>A</item>
 
-    <item>B</item>
+        <item>B</item>
 
-    <item>C</item>
+        <item>C</item>
 
-    <item>D</item>
+        <item>D</item>
 
-    <item>F</item>
+        <item>F</item>
 
-</string-array>
+    </string-array>
 </resources>

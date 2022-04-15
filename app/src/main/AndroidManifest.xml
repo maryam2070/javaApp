@@ -14,6 +14,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Aaaaaaaa">
         <activity
+            android:name=".NewsWebViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".NotesWebViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".EventsWebViewActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AnnouncementWebViewActivity"
+            android:exported="false" />
+        <activity
             android:name=".addNewCourseActivity"
             android:exported="false" />
         <activity

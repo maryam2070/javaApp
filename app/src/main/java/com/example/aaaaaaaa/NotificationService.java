@@ -2,7 +2,9 @@ package com.example.aaaaaaaa;
 
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
+import android.app.TaskStackBuilder;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
@@ -13,6 +15,7 @@ import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -88,16 +91,16 @@ public class NotificationService extends Service {
         NoteTask task3 = new NoteTask();
         NewsTask task4=new NewsTask();
 ////////////////***********     links to test notifications ********//////////
-   /*    task1.execute("https://sciasuedu-my.sharepoint.com/personal/hmbahig_sci_asu_edu_eg/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fhmbahig%5Fsci%5Fasu%5Fedu%5Feg%2FDocuments%2FCrypto%2D%20COMP%20308%20%2D%20Summer");
-        task2.execute("https://sciasuedu-my.sharepoint.com/personal/hmbahig_sci_asu_edu_eg/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fhmbahig%5Fsci%5Fasu%5Fedu%5Feg%2FDocuments%2FCrypto%2D%20COMP%20308%20%2D%20Summer");
-        task3.execute("https://sciasuedu-my.sharepoint.com/personal/hmbahig_sci_asu_edu_eg/_layouts/15/onedrive.aspx?id=%2Fpersonal%2Fhmbahig%5Fsci%5Fasu%5Fedu%5Feg%2FDocuments%2FCrypto%2D%20COMP%20308%20%2D%20Summer");
-        task4.execute("https://www.c-sharpcorner.com/blogs/everything-you-need-to-know-about-contextrelated-memory-leaks-in-android#:~:text=Context-related%20memory%20leaks%20in%20Android%20These%20Contexts%20are,to%20access%20the%20app%E2%80%99s%20resources%20and%20environment%20data.");*/
-////////////////////**************** actual links  ***********////////
+        task1.execute("https://developer.android.com/training/notify-user/navigation#java");
+        task2.execute("https://developer.android.com/training/notify-user/navigation#java");
+        task3.execute("https://developer.android.com/training/notify-user/navigation#java");
+        task4.execute("https://developer.android.com/training/notify-user/navigation#java");
+////////////////////**************** actual links  ***********//////
 
-        task1.execute("https://science.asu.edu.eg/ar/events");
+       /* task1.execute("https://science.asu.edu.eg/ar/events");
         task2.execute("https://science.asu.edu.eg/ar/announcements");
         task3.execute("http://newportal.asu.edu.eg/science/ar/page/47/private-ads");
-        task4.execute("https://science.asu.edu.eg/ar/news");
+        task4.execute("https://science.asu.edu.eg/ar/news");*/
 
     }
 
@@ -143,7 +146,7 @@ public class NotificationService extends Service {
 
                     if (!(s.toString().equals(olds.toString()))  ) {
                         if(s.charAt(0) == '<' && olds.charAt(0) == '<')
-                            createNotification("Faculty of science", "We have new event");
+                            createNotification("Faculty of science", "We have new event","events");
                         myEdit.putString("s1", s.toString());
                         myEdit.commit();
                     }
@@ -199,7 +202,7 @@ public class NotificationService extends Service {
 
                     if (!(s.toString().equals(olds.toString()))  ) {
                         if(s.charAt(0) == '<' && olds.charAt(0) == '<')
-                              createNotification("Faculty of science","We have new note");
+                              createNotification("Faculty of science","We have new note","note");
                         myEdit.putString("s2", s.toString());
                         myEdit.commit();
                     }
@@ -254,7 +257,7 @@ public class NotificationService extends Service {
 
                     if (!(s.toString().equals(olds.toString()))  ) {
                         if(s.charAt(0) == '<' && olds.charAt(0) == '<')
-                             createNotification("Faculty of science","We have new News");
+                             createNotification("Faculty of science","We have new News","news");
                         myEdit.putString("s3", s.toString());
                         myEdit.commit();
                     }
@@ -312,7 +315,7 @@ public class NotificationService extends Service {
 
                     if (!(s.toString().equals(olds.toString())) ) {
                         if( s.charAt(0) == '<' && olds.charAt(0) == '<')
-                            createNotification("Faculty of science", "We have new announcement");
+                            createNotification("Faculty of science", "We have new announcement","announcements");
                         myEdit.putString("s4", s.toString());
                         myEdit.commit();
                     }
@@ -329,7 +332,7 @@ public class NotificationService extends Service {
     }
 
     @RequiresApi(api = Build.VERSION_CODES.O)
-    private void createNotification (String title, String text) {
+    private void createNotification (String title, String text,String type) {
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
@@ -346,6 +349,17 @@ public class NotificationService extends Service {
         mBuilder.setTicker( "Faculty of science ASU" ) ;
         mBuilder.setSmallIcon(R.drawable.logo2) ;
         mBuilder.setAutoCancel( true ) ;
+
+
+        Intent intent = startActivityWebView(type);
+        TaskStackBuilder stackBuilder = TaskStackBuilder.create(this);
+        stackBuilder.addNextIntentWithParentStack(intent);
+
+        PendingIntent resultPendingIntent =
+                stackBuilder.getPendingIntent(0,
+                        PendingIntent.FLAG_UPDATE_CURRENT | PendingIntent.FLAG_IMMUTABLE);
+        mBuilder.setContentIntent(resultPendingIntent);
+
         if (android.os.Build.VERSION. SDK_INT >= android.os.Build.VERSION_CODES. O ) {
             int importance = NotificationManager. IMPORTANCE_HIGH ;
             NotificationChannel notificationChannel = new NotificationChannel( NOTIFICATION_CHANNEL_ID , "NOTIFICATION_CHANNEL_NAME" , importance) ;
@@ -358,6 +372,23 @@ public class NotificationService extends Service {
 
 
 
+
+    }
+
+    private Intent startActivityWebView(String type) {
+        Intent intent;
+        if(type.equals("announcements"))
+        {
+            intent=new Intent(this,AnnouncementWebViewActivity.class);
+
+        }else if(type.equals("events")){
+            intent=new Intent(this,EventsWebViewActivity.class);
+        }else if(type.equals("news")){
+            intent=new Intent(this,NewsWebViewActivity.class);
+        }else {
+         intent=new Intent(this,NotesWebViewActivity.class);
+        }
+        return intent;
     }
 
 }

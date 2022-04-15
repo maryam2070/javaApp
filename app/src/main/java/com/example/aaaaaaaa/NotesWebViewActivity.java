@@ -3,14 +3,13 @@ package com.example.aaaaaaaa;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Handler;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-public class WebViewActivity extends AppCompatActivity implements SwipeRefreshLayout.OnRefreshListener {
+public class NotesWebViewActivity extends AppCompatActivity {
+
 
     private WebView webView;
     private SwipeRefreshLayout mSwipeRefreshLayout;
@@ -18,18 +17,13 @@ public class WebViewActivity extends AppCompatActivity implements SwipeRefreshLa
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_web_view);
+        setContentView(R.layout.activity_notes_web_view);
 
         webView=(WebView) findViewById(R.id.webView1);
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
-        mSwipeRefreshLayout.setOnRefreshListener(this);
-        if(getIntent().hasExtra("URL"))
-        {
-            curUrl=getIntent().getStringExtra("URL");
-            webView.getSettings().setJavaScriptEnabled(true);
-            webView.setWebViewClient(new MyWebViewClient());
-            webView.loadUrl(getIntent().getStringExtra("URL"));
-        }
+
+        webView.loadUrl("http://newportal.asu.edu.eg/science/ar/page/47/private-ads");
+
     }
     @Override public void onBackPressed() {
         if(webView.canGoBack()) {
@@ -38,7 +32,7 @@ public class WebViewActivity extends AppCompatActivity implements SwipeRefreshLa
             super.onBackPressed();
         }
     }
-// Uniform Resource Identifie
+    // Uniform Resource Identifie
     private class MyWebViewClient extends WebViewClient {
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
@@ -50,17 +44,5 @@ public class WebViewActivity extends AppCompatActivity implements SwipeRefreshLa
 
             return true;
         }
-    }
-    @Override
-    public void onRefresh() {
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                mSwipeRefreshLayout.setRefreshing(false);
-                webView.loadUrl(curUrl);
-            }
-        }, 500);
-
     }
 }
