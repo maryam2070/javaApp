@@ -8,6 +8,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,6 +33,7 @@ public class addNewCourseActivity extends AppCompatActivity {
     private EditText courseCredit;
 
     private Button save;
+    ImageView back;
     private ProjectViewModel courseViewModel;
     private Spinner numberPickerGrades;
 
@@ -39,7 +41,7 @@ public class addNewCourseActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_course);
-
+        back=(ImageView)findViewById(R.id.back_iv);
         courseName = findViewById(R.id.ETCourseName);
         courseCode = findViewById(R.id.ETCourseCode);
         courseCredit = findViewById(R.id.ETCourseCredit);
@@ -49,7 +51,12 @@ public class addNewCourseActivity extends AppCompatActivity {
         numberPickerGrades.setAdapter(adapter);
         save = findViewById(R.id.save_btn);
 
-
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

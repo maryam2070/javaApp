@@ -22,7 +22,7 @@ public class NotesWebViewActivity extends AppCompatActivity {
         webView=(WebView) findViewById(R.id.webView1);
         mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_refresh);
 
-        webView.loadUrl("http://newportal.asu.edu.eg/science/ar/page/47/private-ads");
+        webView.loadUrl("https://science.asu.edu.eg/ar/page/47/private-ads");
 
     }
     @Override public void onBackPressed() {

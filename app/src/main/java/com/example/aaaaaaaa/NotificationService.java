@@ -63,7 +63,7 @@ public class NotificationService extends Service {
     public void startTimer () {
         timer = new Timer() ;
         initializeTimerTask() ;
-        timer .schedule( timerTask , 5000 , Your_X_SECS * 1000 ) ; //
+        timer .schedule( timerTask , 24000 , Your_X_SECS * 1000 ) ; //
     }
     public void stopTimerTask () {
         if ( timer != null ) {
@@ -97,9 +97,9 @@ public class NotificationService extends Service {
         task4.execute("https://developer.android.com/training/notify-user/navigation#java");
 ////////////////////**************** actual links  ***********//////
 
-       /* task1.execute("https://science.asu.edu.eg/ar/events");
+      /*ز  task1.execute("https://science.asu.edu.eg/ar/events");
         task2.execute("https://science.asu.edu.eg/ar/announcements");
-        task3.execute("http://newportal.asu.edu.eg/science/ar/page/47/private-ads");
+        task3.execute("https://science.asu.edu.eg/ar/page/47/private-ads");
         task4.execute("https://science.asu.edu.eg/ar/news");*/
 
     }
